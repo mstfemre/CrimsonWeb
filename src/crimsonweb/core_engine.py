@@ -268,6 +268,22 @@ async def passive_recon(
                 return url, resp.status, body
         except (aiohttp.ClientError, asyncio.TimeoutError, OSError):
             return None
+    # JS recon: SPA (React/Vue) API endpoints often live only inside JS bundles.
+    from urllib.parse import urljoin
+    max_js_files = 5
+    max_js_bytes = 512_000
+    js_src_re = re.compile(
+        r'<script[^>]+src=["\']([^"\']+?\.js(?:[?#][^"\']*)?)["\']', re.IGNORECASE
+    )
+    js_api_re = re.compile(
+        r'["\'](/(?:api|v[0-9]|users|auth|login|admin|graphql)[a-zA-Z0-9_\-./]*)["\']'
+    )
+    js_path_re = re.compile(r'["\'](/[a-zA-Z0-9_\-./]+)["\']')
+    js_static_ext = (
+        ".js", ".mjs", ".css", ".map", ".png", ".jpg", ".jpeg", ".gif", ".svg",
+        ".ico", ".woff", ".woff2", ".ttf", ".eot", ".mp4", ".webp",
+    )
+    js_urls: list[str] = []
     async with aiohttp.ClientSession(timeout=client_timeout, headers=headers) as session:
         results = await asyncio.gather(
             *(fetch(session, url) for url in candidate_urls),
@@ -301,6 +317,30 @@ async def passive_recon(
                     href = match.group(1)
                     if not href.startswith("//"):
                         discovered.add(href)
+                # Collect same-origin <script src="...js"> bundles for JS recon.
+                for match in js_src_re.finditer(text):
+                    js_abs = urljoin(url, match.group(1).strip())
+                    if urlsplit(js_abs).netloc == parsed.netloc and js_abs not in js_urls:
+                        js_urls.append(js_abs)
+        # Fetch a bounded set of JS bundles and mine them for API/relative paths.
+        if js_urls:
+            js_results = await asyncio.gather(
+                *(fetch(session, js_url) for js_url in js_urls[:max_js_files]),
+                return_exceptions=True,
+            )
+            for js_result in js_results:
+                if isinstance(js_result, Exception) or js_result is None:
+                    continue
+                _js_url, js_status, js_body = js_result
+                if js_status != 200:
+                    continue
+                js_text = js_body[:max_js_bytes].decode("utf-8", errors="ignore")
+                for match in js_api_re.finditer(js_text):
+                    discovered.add(match.group(1))
+                for match in js_path_re.finditer(js_text):
+                    candidate = match.group(1)
+                    if 2 <= len(candidate) <= 120 and not candidate.lower().endswith(js_static_ext):
+                        discovered.add(candidate)
     paths = sorted(discovered)[:max(0, max_links)]
     audit_event("passive_recon_done", target=target_url, paths_found=len(paths))
     return paths
