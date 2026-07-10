@@ -1,0 +1,26 @@
+[
+  {
+    "name": "http",
+    "probe": "GET / HTTP/1.0\r\n\r\n",
+    "match_regex": "(?i)^HTTP/1\\.[01] \\d{3}",
+    "fallback_ports": [80, 8080, 443, 8443]
+  },
+  {
+    "name": "ssh",
+    "probe": "",
+    "match_regex": "(?i)^SSH-([\\d\\.]+)-([A-Za-z0-9_\\-\\.]+)",
+    "fallback_ports": [22, 2222]
+  },
+  {
+    "name": "ftp",
+    "probe": "",
+    "match_regex": "(?i)^220[- ]",
+    "fallback_ports": [21]
+  },
+  {
+    "name": "smtp",
+    "probe": "EHLO crimson\r\n",
+    "match_regex": "(?i)^220[- ]",
+    "fallback_ports": [25, 587]
+  }
+]

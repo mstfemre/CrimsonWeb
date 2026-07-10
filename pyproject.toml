@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crimsonweb"
+version = "2.1.0"
+description = "Authorized lab and assessment scanner with native discovery, fingerprinting, web checks, TLS, CORS, cookie, CVE correlation, and reporting."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "aiohttp>=3.9",
+]
+
+[project.optional-dependencies]
+cve = [
+  "httpx>=0.27",
+  "asyncio-throttle>=1.0",
+]
+egress = [
+  "aiohttp-socks>=0.9",
+  "PyYAML>=6.0",
+]
+fingerprint = [
+  "curl-cffi>=0.7",
+]
+syn = [
+  "scapy>=2.5",
+]
+full = [
+  "httpx>=0.27",
+  "asyncio-throttle>=1.0",
+  "aiohttp-socks>=0.9",
+  "PyYAML>=6.0",
+  "curl-cffi>=0.7",
+  "scapy>=2.5",
+  "colorama>=0.4",
+]
+
+[project.scripts]
+crimsonweb = "crimsonweb.cli:main"
+crimson = "crimsonweb.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+crimsonweb = ["*.json"]
