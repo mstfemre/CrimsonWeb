@@ -15,8 +15,16 @@ class CveLookupTests(unittest.TestCase):
 
         self.assertEqual(cpe, "cpe:2.3:a:openbsd:openssh:8.9p1:*:*:*:*:*:*:*")
 
-    def test_service_product_mismatch_is_rejected(self):
-        self.assertIsNone(CveLookup._query_from_version("ssh", "nginx/1.25.4"))
+    def test_extraction_is_service_independent(self):
+        # Whitelist removed: a parseable product yields a CPE regardless of the
+        # service label it was seen on.
+        self.assertEqual(
+            CveLookup._query_from_version("ssh", "nginx/1.25.4"),
+            "cpe:2.3:a:nginx:nginx:1.25.4:*:*:*:*:*:*:*",
+        )
+
+    def test_unparseable_banner_is_rejected(self):
+        self.assertIsNone(CveLookup._query_from_version("ssh", "no-version-here"))
 
     def test_unknown_and_binary_versions_are_rejected(self):
         self.assertIsNone(CveLookup._query_from_version("http", "unknown"))
