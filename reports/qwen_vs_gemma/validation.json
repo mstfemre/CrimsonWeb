@@ -1,0 +1,31 @@
+{
+  "baseline_standard": {
+    "passed": 361,
+    "skipped": 3,
+    "seconds": 19.55
+  },
+  "final_standard": {
+    "passed": 365,
+    "skipped": 4,
+    "warnings": 1,
+    "seconds": 19.09
+  },
+  "real_ollama": {
+    "passed": 24,
+    "failed": 0,
+    "per_model": 12,
+    "standard_scenarios_per_model": 9,
+    "api_analysis_per_model": 3
+  },
+  "targeted_ruff_exit": 0,
+  "compileall_exit": 0,
+  "full_repo_ruff_exit": 1,
+  "full_repo_ruff_existing_violations": 125,
+  "existing_report_overwrite_guard_verified": true,
+  "same_inputs_schema_system_verified": true,
+  "profile_verified": true,
+  "distinct_validated_outputs_per_model_scenario": 1,
+  "production_provider_security_and_phase4a_modified": false,
+  "phase4b_started": false,
+  "loaded_model_digests_match_inventory": true
+}

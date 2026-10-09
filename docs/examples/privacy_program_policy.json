@@ -1,0 +1,21 @@
+{
+  "target_scope": {
+    "allowed_domains": ["lab.test"],
+    "allowed_networks": ["127.0.0.0/8", "::1/128"],
+    "allowed_paths": ["/echo"],
+    "forbidden_paths": [],
+    "allowed_methods": ["GET"],
+    "allowed_ports": [8001],
+    "allowed_categories": ["web_observation"],
+    "forbidden_categories": [],
+    "allow_private_networks": true
+  },
+  "operator_approved": false,
+  "approved_by": "",
+  "scope_source": "",
+  "valid_from": null,
+  "valid_until": null,
+  "rate_limit_per_minute": 3,
+  "maximum_concurrency": 1,
+  "maximum_request_budget": 3
+}

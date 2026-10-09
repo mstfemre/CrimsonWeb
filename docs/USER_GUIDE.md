@@ -1,6 +1,6 @@
 # CrimsonWeb User Guide
 
-Last updated: 2026-07-05
+Last updated: 2026-10-08
 
 CrimsonWeb is an authorized lab and assessment scanner with native TCP/UDP discovery, service fingerprinting, web security checks, TLS inspection, CORS/cookie/header analysis, CVE correlation, audit logging, checkpoint/resume, and report generation. It does not call nmap, masscan, nmap-service-probes, or external scanner binaries.
 
@@ -26,6 +26,8 @@ The project has been split from the original monolithic engine into smaller modu
 | `src/crimsonweb/cli_commands.py` | `scan`, `web`, `doctor`, `config`, and `init` dispatch/helpers. |
 | `src/crimsonweb/models.py` | Shared dataclasses such as `Target`, `ServiceResult`, `WebFinding`, and `WebResponse`. |
 | `src/crimsonweb/audit.py` | Audit logging, JSONL audit events, CLI secret redaction. |
+| `src/crimsonweb/privacy.py` | Sanitization of persisted secrets and URL parameters. |
+| `src/crimsonweb/scheduling.py` | Bounded task allocation and cancellation cleanup. |
 | `src/crimsonweb/state.py` | Checkpoint/resume state file handling. |
 | `src/crimsonweb/ports.py` | Target resolution, port parsing, and top-port selection. |
 | `src/crimsonweb/discovery/` | Async TCP connect scanner, Scapy SYN scanner, UDP probe scanner. |
@@ -38,6 +40,86 @@ The project has been split from the original monolithic engine into smaller modu
 | `src/crimsonweb/formatting.py` | Shared banner/evidence formatting helpers. |
 
 ## Installation
+
+### Current Windows Installation
+
+This computer uses `C:\Users\mstfc\OneDrive\Belgeler\CrimsonWeb` as the project
+directory. The editable package is installed in `.venv`. The global launcher
+`C:\Users\mstfc\bin\crimsonweb.cmd` points to that directory's
+`.venv\Scripts\crimsonweb.exe`. Keep the directory in place; do not copy a
+virtual environment when moving the project. Recreate it at the destination.
+
+```powershell
+crimsonweb --version
+crimsonweb doctor
+crimsonweb --help
+```
+
+To update package dependencies after editing this project:
+
+```powershell
+cd C:\Users\mstfc\OneDrive\Belgeler\CrimsonWeb
+.\.venv\Scripts\python.exe -m pip install -e ".[full]"
+```
+
+Ordinary edits under `src\crimsonweb` take effect on the next invocation without
+reinstallation. Use an explicit writable report path when launching from a
+system directory:
+
+```powershell
+crimsonweb scan -t 127.0.0.1 -p 80,443 --no-cve --output-dir "$env:USERPROFILE\Documents\CrimsonWebReports"
+```
+
+### Terminal Appearance
+
+Rich provides a crimson ASCII banner, compact `[::]` stage headings, progress
+counters and a responsive results table. Narrow terminals show a compact
+`CRIMSONWEB` title instead of wrapping the large banner. Progress redraws are
+disabled when output is redirected; only the final counter is emitted.
+Set `$env:NO_COLOR = '1'` to disable UI colors; remove it with
+`Remove-Item Env:NO_COLOR` to restore terminal detection. On Kali use
+`NO_COLOR=1 crimsonweb --help` for plain output. The UI changes do not modify
+scan rates, probes, scope or proxy routing.
+
+Known CPE products are checked against the detected service before CVE lookup
+(for example, an nginx banner on a service classified as SSH is not correlated
+with HTTP-server CVEs). Banner correlation still requires manual confirmation.
+
+Terminal design references: https://clig.dev/ and
+https://rich.readthedocs.io/en/stable/console.html.
+
+### Privacy and Bounded Scheduling
+
+TCP connect discovery and service detection now keep at most their configured
+concurrency count of outstanding tasks, rather than scheduling the entire port
+list at once. Pending work is cancelled and awaited on failure/cancellation.
+Timeouts, scan scope, concurrency defaults and web rate limits are unchanged.
+This reduces task-allocation memory; it is not a guarantee of faster network
+responses or avoidance of blocks.
+
+Structured audit fields and JSON reports mask credential/cookie headers, known
+secret field names, URL userinfo and all URL query values; URL fragments are
+omitted. Live responses are not modified, so cookie/header analysis continues
+normally. The text audit handler also redacts URLs. CLI URL arguments are
+sanitized before recording. Existing logs are not rewritten.
+
+This is data minimization, not anonymity: target addresses and timestamps remain
+in the audit trail. Arbitrary secrets in response bodies, paths or free-form
+text are not comprehensively detected. CSV/Markdown evidence requires review
+before sharing; protect the output directory with OS permissions. These changes
+do not change Tor/proxy routing or bypass WAF/IDS blocks.
+
+Reproduce the network-free scheduling benchmark on Windows:
+
+```powershell
+.\.venv\Scripts\python.exe tests\benchmark_scheduling.py
+```
+
+On this machine, 20,000 synthetic operations used 25.74 MiB peak traced Python
+memory with eager allocation versus 0.95 MiB with a 100-task window. Runtime was
+0.300s versus 0.219s in that run. These measurements are environment-dependent
+and are not a network scanning throughput benchmark. No new CLI flags or
+dependencies are needed for these changes.
 
 CrimsonWeb requires Python 3.11 or newer.
 

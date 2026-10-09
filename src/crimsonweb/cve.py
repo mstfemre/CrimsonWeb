@@ -49,6 +49,20 @@ CPE_PRODUCT_MAP: dict[str, tuple[str, str]] = {
     "pure-ftpd": ("pureftpd", "pure-ftpd"),
 }
 
+PRODUCT_SERVICES = {
+    "http_server": {"http", "https"},
+    "tomcat": {"http", "https"},
+    "nginx": {"http", "https"},
+    "iis": {"http", "https"},
+    "openssh": {"ssh"},
+    "mysql": {"mysql"},
+    "mariadb": {"mysql", "mariadb"},
+    "postgresql": {"postgresql"},
+    "proftpd": {"ftp", "ftps"},
+    "vsftpd": {"ftp", "ftps"},
+    "pure-ftpd": {"ftp", "ftps"},
+}
+
 
 class CveLookup:
     NVD_API = "https://services.nvd.nist.gov/rest/json/cves/2.0"
@@ -98,6 +112,9 @@ class CveLookup:
         if parsed is None:
             return None
         vendor, product, product_version = parsed
+        allowed_services = PRODUCT_SERVICES.get(product)
+        if allowed_services is not None and service.lower() not in allowed_services:
+            return None
         return f"cpe:2.3:a:{vendor}:{product}:{product_version}:*:*:*:*:*:*:*"
 
     @staticmethod

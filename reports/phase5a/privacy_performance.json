@@ -1,0 +1,69 @@
+{
+  "measured_at_utc": "2026-10-09T07:55:47.067755+00:00",
+  "method": "same_repository_incremental_tracemalloc_and_windows_working_set",
+  "limitations": "7 serial synthetic jobs; tracemalloc adds overhead; MockTransport has no real network latency; process RSS includes allocator/cache effects; no GPU or loaded AI measurement",
+  "startup_ms": 22.453,
+  "startup_python_current_bytes": 280365,
+  "startup_python_peak_bytes": 298454,
+  "jobs_python_current_bytes": 710238,
+  "jobs_python_peak_bytes": 754646,
+  "process_working_set_before_bytes": 108675072,
+  "process_working_set_after_bytes": 111157248,
+  "process_working_set_delta_bytes": 2482176,
+  "egress_median_ms": 57.126,
+  "ai_calls": 0,
+  "maximum_pending_jobs": 8,
+  "maximum_active_jobs": 1,
+  "response_body_limit_bytes": 4096,
+  "cases": [
+    {
+      "kind": "egress",
+      "elapsed_ms": 81.699,
+      "status": "secure_observed",
+      "execution_status": "completed",
+      "requests_made": 1
+    },
+    {
+      "kind": "egress",
+      "elapsed_ms": 56.934,
+      "status": "secure_observed",
+      "execution_status": "completed",
+      "requests_made": 1
+    },
+    {
+      "kind": "egress",
+      "elapsed_ms": 59.329,
+      "status": "secure_observed",
+      "execution_status": "completed",
+      "requests_made": 1
+    },
+    {
+      "kind": "egress",
+      "elapsed_ms": 57.126,
+      "status": "secure_observed",
+      "execution_status": "completed",
+      "requests_made": 1
+    },
+    {
+      "kind": "egress",
+      "elapsed_ms": 55.873,
+      "status": "secure_observed",
+      "execution_status": "completed",
+      "requests_made": 1
+    },
+    {
+      "kind": "dns",
+      "elapsed_ms": 49.279,
+      "status": "inconclusive",
+      "execution_status": "completed",
+      "requests_made": 1
+    },
+    {
+      "kind": "ipv6",
+      "elapsed_ms": 24.912,
+      "status": "inconclusive",
+      "execution_status": "completed",
+      "requests_made": 0
+    }
+  ]
+}

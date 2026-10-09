@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-09",
+  "baseline_standard": {
+    "skipped": 4,
+    "seconds": 19.39,
+    "passed": 365
+  },
+  "final_standard": {
+    "failed": 0,
+    "seconds": 31.18,
+    "skipped": 4,
+    "warnings": 1,
+    "passed": 469
+  },
+  "phase4b_added_standard": 104,
+  "previous_standard_regressions": 0,
+  "real_gemma4": {
+    "failed": 0,
+    "seconds": 130.15,
+    "passed": 3,
+    "report": "gemma4_regression.json"
+  },
+  "historical_model_comparison": {
+    "rerun_in_phase4b": false,
+    "passed": 24
+  },
+  "targeted_ruff_exit": 0,
+  "compileall_exit": 0,
+  "full_repo_ruff_exit": 1,
+  "full_repo_ruff_violations": 127,
+  "ruff_version": "0.16.10",
+  "alembic_head": "0004_phase4b",
+  "ai_production_contract_modified": false,
+  "model_defaults_modified": false,
+  "phase4c_started": false,
+  "phase4d_started": false
+}

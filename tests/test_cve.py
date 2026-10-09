@@ -17,6 +17,8 @@ class CveLookupTests(unittest.TestCase):
 
     def test_service_product_mismatch_is_rejected(self):
         self.assertIsNone(CveLookup._query_from_version("ssh", "nginx/1.25.4"))
+        self.assertIsNone(CveLookup._query_from_version("http", "OpenSSH_8.9p1"))
+        self.assertIsNotNone(CveLookup._query_from_version("https", "nginx/1.25.4"))
 
     def test_unknown_and_binary_versions_are_rejected(self):
         self.assertIsNone(CveLookup._query_from_version("http", "unknown"))

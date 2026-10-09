@@ -1,0 +1,9 @@
+{
+  "processor": "13th Gen Intel(R) Core(TM) i7-13650HX",
+  "physical_cores": 14,
+  "logical_processors": 20,
+  "operating_system": "Microsoft Windows 11 Pro",
+  "windows_version": "10.0.26300",
+  "windows_build": "26300",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU, 617.14, 8188 MiB"
+}

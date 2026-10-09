@@ -1,0 +1,10 @@
+{
+  "verification_urls": ["http://127.0.0.1:8001/echo", "http://lab.test:8001/echo"],
+  "allowed_tests": ["egress", "dns", "ipv6"],
+  "operator_approved": false,
+  "valid_until": null,
+  "maximum_observations": 0,
+  "rate_limit_per_minute": 3,
+  "maximum_concurrency": 1,
+  "allow_ipv6_probe": false
+}

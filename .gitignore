@@ -83,3 +83,13 @@ crimsonweb_*.md
 
 # Checkpoint / resume state (default: ~/.crimsonweb/state) and any local copy
 .crimsonweb/
+.install-tmp/
+data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite.*.bak
+*.sqlite.*.bak-wal
+*.sqlite.*.bak-shm
+*.discovery.lock
+*.privacy.lock

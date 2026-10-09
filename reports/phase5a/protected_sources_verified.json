@@ -1,0 +1,50 @@
+[
+  {
+    "path": "src/crimsonweb/api/ai/__init__.py",
+    "before_sha256": "b47298eff397b8a255a87f6d1fa700fecb787d1c5d93f83be4e6812531c13c81",
+    "after_sha256": "b47298eff397b8a255a87f6d1fa700fecb787d1c5d93f83be4e6812531c13c81",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/ai/contract.py",
+    "before_sha256": "0227958ca961931cdc0c91cdfb4648f7a14025f6c576e6d7c2f8096ecc505e0c",
+    "after_sha256": "0227958ca961931cdc0c91cdfb4648f7a14025f6c576e6d7c2f8096ecc505e0c",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/ai/models.py",
+    "before_sha256": "52809d60dc01776e4b305c7bf8c51936b3b7f81b6fe25f88b459afb0c661c2ff",
+    "after_sha256": "52809d60dc01776e4b305c7bf8c51936b3b7f81b6fe25f88b459afb0c661c2ff",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/ai/provider.py",
+    "before_sha256": "e84a78077bebd1c1b44dbfedfdd1029872f5e74e6fddfd1dd28fe580add6e69c",
+    "after_sha256": "e84a78077bebd1c1b44dbfedfdd1029872f5e74e6fddfd1dd28fe580add6e69c",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/ai/routes.py",
+    "before_sha256": "45c90dea75be0bfc5a5dbd24a7cfe9cdd718e0351de1f8502a99562aaab2c974",
+    "after_sha256": "45c90dea75be0bfc5a5dbd24a7cfe9cdd718e0351de1f8502a99562aaab2c974",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/ai/security.py",
+    "before_sha256": "3a2a96fc6c879bc3fe167e3e07c09479ab59544db7323513051e87a97c2626b8",
+    "after_sha256": "3a2a96fc6c879bc3fe167e3e07c09479ab59544db7323513051e87a97c2626b8",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/ai/service.py",
+    "before_sha256": "f3d17d04a4fcd3739274296ce611e3b90977c309ff21df2ff081590c6c0a89ba",
+    "after_sha256": "f3d17d04a4fcd3739274296ce611e3b90977c309ff21df2ff081590c6c0a89ba",
+    "unchanged": true
+  },
+  {
+    "path": "src/crimsonweb/api/engine.py",
+    "before_sha256": "b521fe6da0f27c089782d69eebbcdbdd99b9b40cd1006b711c6dc7fefd65a61c",
+    "after_sha256": "b521fe6da0f27c089782d69eebbcdbdd99b9b40cd1006b711c6dc7fefd65a61c",
+    "unchanged": true
+  }
+]

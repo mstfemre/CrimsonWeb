@@ -7,6 +7,7 @@ import sys
 import time
 
 from ..models import Target
+from ..scheduling import bounded_results
 
 try:
     from colorama import Fore
@@ -21,12 +22,8 @@ DEFAULT_PORT_CONCURRENCY = 500
 
 
 def _print_stage(title: str, detail: str = "") -> None:
-    line = "=" * 78
-    print(Fore.CYAN + line)
-    print(f"[ {title} ]")
-    if detail:
-        print(detail)
-    print(Fore.CYAN + line)
+    from ..ui import print_stage
+    print_stage(title, detail)
 
 
 def _render_progress(prefix: str, done: int, total: int, width: int = 28) -> str:
@@ -62,20 +59,23 @@ class AsyncConnectScanner:
 
     async def scan(self, ports: list[int]) -> list[int]:
         semaphore = asyncio.Semaphore(self.concurrency)
-        tasks = [self._scan_one(port, semaphore) for port in ports]
         open_ports: list[int] = []
         started = time.monotonic()
         _print_stage(
             "Port Scan",
             f"Mode: async-connect | Timeout: {self.timeout:.2f}s | Concurrency: {self.concurrency}",
         )
-        for idx, task in enumerate(asyncio.as_completed(tasks), start=1):
-            result = await task
+        idx = 0
+        async for result in bounded_results(
+            ports, lambda port: self._scan_one(port, semaphore), self.concurrency,
+        ):
+            idx += 1
             if result is not None:
                 open_ports.append(result)
-            if idx % 200 == 0 or idx == len(tasks):
-                sys.stdout.write(Fore.CYAN + "\r" + _render_progress("Scanning ports", idx, len(tasks)))
-                sys.stdout.flush()
+            if idx % 200 == 0 or idx == len(ports):
+                from ..ui import write_progress
+                write_progress("Scanning ports", idx, len(ports))
         elapsed = time.monotonic() - started
-        print(Fore.GREEN + f"\nOpen ports found: {len(open_ports)} in {elapsed:.1f}s")
+        from ..ui import print_success
+        print_success(f"Open ports found: {len(open_ports)} in {elapsed:.1f}s")
         return sorted(open_ports)

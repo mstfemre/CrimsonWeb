@@ -88,9 +88,14 @@ from .egress import (
 )
 from .models import ServiceResult, WebBlockEvent, WebResponse
 from .state import ScanState, default_state_path, load_state, save_state
-from .ports import DEFAULT_TOP_PORTS_COUNT, parse_ports, target_from_args
+from .ports import DEFAULT_TOP_PORTS_COUNT, looks_like_ip, parse_ports, target_from_args
 from .reporting import web_finding_count, write_executive_report
-from .service_detection import DEFAULT_BANNER_TIMEOUT, DEFAULT_SERVICE_CONCURRENCY, ServiceDetector
+from .service_detection import (
+    DEFAULT_BANNER_TIMEOUT,
+    DEFAULT_SERVICE_CONCURRENCY,
+    ServiceDetector,
+    extract_san_dns_names,
+)
 
 # --------------------------------------------------------------------------
 # Optional dependencies — gracefully degraded
@@ -147,6 +152,39 @@ FINGERPRINT_PROFILES = {
     "safari17": "safari17_0",
 }
 ROE_REF_PATTERN = re.compile(r"^[A-Za-z0-9._\-:/]{4,128}$")
+# Common second-level labels under multi-part public suffixes (co.uk, gov.tr, ...).
+# Heuristic — no public-suffix-list dependency — kept conservative so scope
+# derivation never over-expands beyond the target's own registrable domain.
+SCOPE_SECOND_LEVEL_LABELS = frozenset(
+    {"co", "com", "org", "net", "gov", "edu", "ac", "mil", "gob", "or", "ne", "go", "k12"}
+)
+
+
+def derive_scope_root(hostname: str) -> str:
+    """Best-effort registrable domain of the target, used as the scope anchor.
+
+    ``api.dev.example.com`` -> ``example.com``; ``portal.example.co.uk`` ->
+    ``example.co.uk``. Only this registrable domain and its subdomains are ever
+    treated as in-scope for dynamic discovery.
+    """
+    host = (hostname or "").strip().lower().rstrip(".")
+    labels = [label for label in host.split(".") if label]
+    if len(labels) <= 2:
+        return host
+    if labels[-2] in SCOPE_SECOND_LEVEL_LABELS:
+        return ".".join(labels[-3:])
+    return ".".join(labels[-2:])
+
+
+def is_in_scope(candidate: str, scope_root: str) -> bool:
+    """True iff ``candidate`` is the scope root or a subdomain of it."""
+    candidate = (candidate or "").strip().lower().rstrip(".")
+    if candidate.startswith("*."):
+        candidate = candidate[2:]
+    root = (scope_root or "").strip().lower().rstrip(".")
+    if not candidate or not root:
+        return False
+    return candidate == root or candidate.endswith("." + root)
 class TimingScope:
     __slots__ = ("_started", "elapsed_ms")
     def __init__(self) -> None:
@@ -685,28 +723,11 @@ class DiffEngine:
 # UI helpers
 # --------------------------------------------------------------------------
 def print_banner() -> None:
-    print(
-        Fore.RED + Style.BRIGHT
-        + r"""
-  ____ ____  ___ __  __ ____   ___  _   ___        _______ ____
- / ___|  _ \|_ _|  \/  / ___| / _ \| \ | \ \      / / ____| __ )
-| |   | |_) || || |\/| \___ \| | | |  \| |\ \ /\ / /|  _| |  _ \
-| |___|  _ < | || |  | |___) | |_| | |\  | \ V  V / | |___| |_) |
- \____|_| \_\___|_|  |_|____/ \___/|_| \_|  \_/\_/  |_____|____/
-"""
-        + Style.RESET_ALL
-    )
-    print(Fore.LIGHTBLACK_EX + "  " + "-" * 70)
-    print(Fore.WHITE + Style.BRIGHT + f"  CrimsonWeb v{APP_VERSION} | Authorized Web & Service Scanner")
-    print(Fore.RED + "  multi-egress | ban-aware | adaptive pacing | audit logged")
-    print(Fore.LIGHTBLACK_EX + "  " + "-" * 70 + "\n")
+    from .ui import print_banner as show_banner
+    show_banner(APP_VERSION)
 def print_stage(title: str, detail: str = "") -> None:
-    line = "=" * 78
-    print(Fore.CYAN + line)
-    print(Fore.WHITE + Style.BRIGHT + f"[ {title} ]")
-    if detail:
-        print(Fore.LIGHTBLACK_EX + detail)
-    print(Fore.CYAN + line)
+    from .ui import print_stage as show_stage
+    show_stage(title, detail)
 def render_progress(prefix: str, done: int, total: int, width: int = 28) -> str:
     total = max(total, 1)
     ratio = min(max(done / total, 0.0), 1.0)
@@ -735,6 +756,12 @@ class BlueScanner:
         apply_runtime_profile(args)
         self.args = args
         self.target = target_from_args(args)
+        self.target_is_ip = looks_like_ip(self.target.original)
+        self.scope_root = (
+            self.target.original.lower().rstrip(".")
+            if self.target_is_ip
+            else derive_scope_root(self.target.original)
+        )
         self.ports = parse_ports(args)
         self.scan_mode = self._select_scan_mode()
         self.state_path = self._resolve_state_path()
@@ -910,6 +937,7 @@ class BlueScanner:
             result.mitre_attack = mitre_mappings_for_result(result)
         self._print_results(results)
         self._print_web_blocks()
+        self._report_scope_discoveries(results)
         if self.args.compare:
             self._print_diff(DiffEngine.compare(self.args.compare, results, self.args.output_dir))
         report_path = self._write_report(results)
@@ -957,70 +985,8 @@ class BlueScanner:
             print(Fore.MAGENTA + f"  - {message}")
     @staticmethod
     def _print_results(results: dict[int, ServiceResult]) -> None:
-        print_stage("Results", f"Open services discovered: {len(results)}")
-        print(Fore.CYAN + "-" * 120)
-        print(
-            Fore.WHITE + Style.BRIGHT
-            + f"{'PORT':<8} {'SERVICE':<10} {'TLS':<5} {'OS HINT':<22} {'VERSION':<34} {'FINDINGS'}"
-        )
-        print(Fore.CYAN + "-" * 120)
-        total_cves = 0
-        total_sensitive = 0
-        total_api = 0
-        total_web_hardening = 0
-        web_services = 0
-        for port in sorted(results):
-            result = results[port]
-            findings = []
-            if result.waf:
-                findings.append(f"WAF={result.waf}")
-            if result.sensitive_paths:
-                findings.append(f"files={len(result.sensitive_paths)}")
-            if result.api_paths:
-                findings.append(f"api={len(result.api_paths)}")
-            if result.security_headers:
-                findings.append(f"headers={len(result.security_headers)}")
-            if result.cookie_findings:
-                findings.append(f"cookies={len(result.cookie_findings)}")
-            if result.cors_findings:
-                findings.append(f"cors={len(result.cors_findings)}")
-            if result.mitre_attack:
-                findings.append(f"mitre={len(result.mitre_attack)}")
-            if result.cves:
-                findings.append(f"cves={len(result.cves)}")
-            if result.tls_certificate:
-                if result.tls_certificate.get("days_until_expiry") is not None:
-                    findings.append(f"cert={result.tls_certificate.get('days_until_expiry')}d")
-                elif result.tls_certificate.get("skipped"):
-                    findings.append("cert=skipped")
-            if result.os_hint:
-                findings.append(f"os={result.os_hint}")
-            if result.http_status is not None:
-                findings.append(f"http={result.http_status}")
-            if result.title:
-                findings.append(f"title={trim_text(result.title, 22)}")
-            total_cves += len(result.cves)
-            total_sensitive += len(result.sensitive_paths)
-            total_api += len(result.api_paths)
-            total_web_hardening += web_finding_count(result)
-            if result.service in {"http", "https"}:
-                web_services += 1
-            color = result_color(result)
-            print(
-                color
-                + f"{port:<8} {result.service:<10} {str(result.tls):<5} "
-                + f"{trim_text(result.os_hint or '-', 22):<22} "
-                + f"{trim_text(result.version, 34):<34} "
-                + trim_text(", ".join(findings) or "-", 38)
-            )
-        print(Fore.CYAN + "-" * 120)
-        print(
-            Fore.WHITE + Style.BRIGHT
-            + f"Summary: {len(results)} open port(s) | {web_services} web service(s) | "
-            + f"{total_sensitive} sensitive path hit(s) | {total_api} API indicator(s) | "
-            + f"{total_web_hardening} web finding(s) | {total_cves} CVE match(es)"
-        )
-        print(Fore.CYAN + "=" * 120)
+        from .ui import print_results
+        print_results(results)
     def _print_web_blocks(self) -> None:
         if not self.web_controller.block_events:
             return
@@ -1030,6 +996,52 @@ class BlueScanner:
                 Fore.YELLOW
                 + f"  - {event.status} {event.url} | {event.reason} | egress={event.egress_id}"
             )
+    def _collect_scope_discoveries(
+        self, results: dict[int, ServiceResult]
+    ) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
+        """Mine TLS SANs from results, split into in-scope vs. out-of-scope.
+
+        Scope is anchored on the original target's registrable domain
+        (``self.scope_root``). When the target is an IP there is no domain scope,
+        so every SAN is merely "observed" (reported, never treated as in-scope)
+        to avoid straying into shared-hosting or third-party CDN infrastructure.
+        """
+        target_host = self.target.original.lower().rstrip(".")
+        in_scope: list[tuple[str, int]] = []
+        observed: list[tuple[str, int]] = []
+        seen: set[str] = set()
+        for port in sorted(results):
+            certificate = results[port].tls_certificate
+            if not certificate:
+                continue
+            for host in extract_san_dns_names(certificate):
+                if host == target_host or host in seen:
+                    continue
+                seen.add(host)
+                if not self.target_is_ip and is_in_scope(host, self.scope_root):
+                    in_scope.append((host, port))
+                else:
+                    observed.append((host, port))
+        return in_scope, observed
+    def _report_scope_discoveries(self, results: dict[int, ServiceResult]) -> None:
+        in_scope, observed = self._collect_scope_discoveries(results)
+        if not in_scope and not observed:
+            return
+        print_stage(
+            "Dynamic Scope Discovery",
+            f"Scope root: {self.scope_root} | In-scope SANs: {len(in_scope)} | "
+            f"Other SANs observed: {len(observed)}",
+        )
+        for host, port in in_scope:
+            print(Fore.GREEN + Style.BRIGHT + f"  [+] Discovered Subdomain: {host} (via :{port})")
+        for host, port in observed:
+            print(Fore.LIGHTBLACK_EX + f"  [~] Out-of-scope SAN (not scanned): {host} (via :{port})")
+        audit_event(
+            "scope_discovery",
+            scope_root=self.scope_root,
+            in_scope=[host for host, _ in in_scope],
+            observed=[host for host, _ in observed],
+        )
     def _write_report(self, results: dict[int, ServiceResult]) -> Path:
         timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%SZ")
         safe_target = re.sub(r"[^A-Za-z0-9_.-]+", "_", self.target.address)
@@ -1047,6 +1059,8 @@ class BlueScanner:
             "web_policy": self.web_controller.report_metadata(),
             "ports": [self._serialize_result(results[port]) for port in sorted(results)],
         }
+        from .privacy import sanitize
+        payload = sanitize(payload)
         if self.args.format == "json":
             with report_path.open("w", encoding="utf-8") as handle:
                 json.dump(payload, handle, indent=2)
@@ -1079,7 +1093,8 @@ class BlueScanner:
         return report_path
     @staticmethod
     def _serialize_result(result: ServiceResult) -> dict:
-        return asdict(result)
+        from .privacy import sanitize
+        return sanitize(asdict(result))
 # --------------------------------------------------------------------------
 # CLI
 # --------------------------------------------------------------------------
@@ -1306,7 +1321,10 @@ def write_authorization_context(args: argparse.Namespace) -> None:
 # Main
 # --------------------------------------------------------------------------
 def main(argv: Iterable[str] | None = None) -> int:
-    colorama_init(autoreset=True)
+    colorama_init(
+        autoreset=True,
+        strip=True if os.environ.get("NO_COLOR") or not sys.stdout.isatty() else None,
+    )
     raw_argv = list(argv) if argv is not None else sys.argv[1:]
     command, parser_argv = normalize_command_argv(raw_argv)
     if command in {"doctor", "config", "init"}:

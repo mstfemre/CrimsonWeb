@@ -81,6 +81,7 @@ def _dependency_status(module: str, required: bool = False) -> dict[str, object]
 def _doctor_payload(version: str) -> dict[str, object]:
     dependencies = [
         _dependency_status("aiohttp", required=True),
+        _dependency_status("rich", required=True),
         _dependency_status("httpx"),
         _dependency_status("asyncio_throttle"),
         _dependency_status("aiohttp_socks"),

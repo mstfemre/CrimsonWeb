@@ -25,12 +25,8 @@ UDPProbeValue = bytes | Callable[[], bytes]
 
 
 def _print_stage(title: str, detail: str = "") -> None:
-    line = "=" * 78
-    print(Fore.CYAN + line)
-    print(f"[ {title} ]")
-    if detail:
-        print(detail)
-    print(Fore.CYAN + line)
+    from ..ui import print_stage
+    print_stage(title, detail)
 
 
 def _ike_transform(last: int, transform_type: int, transform_id: int, attrs: bytes = b"") -> bytes:
@@ -178,5 +174,6 @@ class UdpScanner:
         for item in results:
             if isinstance(item, ServiceResult):
                 open_udp[item.port] = item
-        print(Fore.GREEN + f"UDP responders found: {len(open_udp)}")
+        from ..ui import print_success
+        print_success(f"UDP responders found: {len(open_udp)}")
         return open_udp

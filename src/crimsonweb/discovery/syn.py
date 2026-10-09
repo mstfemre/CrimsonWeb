@@ -26,12 +26,8 @@ SNIFFER_STARTUP_DELAY = 0.1
 
 
 def _print_stage(title: str, detail: str = "") -> None:
-    line = "=" * 78
-    print(Fore.CYAN + line)
-    print(f"[ {title} ]")
-    if detail:
-        print(detail)
-    print(Fore.CYAN + line)
+    from ..ui import print_stage
+    print_stage(title, detail)
 
 
 def _render_progress(prefix: str, done: int, total: int, width: int = 28) -> str:
@@ -236,10 +232,8 @@ class SynScanner:
                 if not pending:
                     break
                 self._send_syns(l3, pending)
-                sys.stdout.write(
-                    Fore.CYAN + "\r" + _render_progress("Blasting SYN", attempt + 1, self.retry + 1)
-                )
-                sys.stdout.flush()
+                from ..ui import write_progress
+                write_progress("SYN discovery", attempt + 1, self.retry + 1)
                 if attempt < self.retry:
                     time.sleep(min(self.timeout, 0.5))  # settle before retransmitting
             # Strict trailing window for late replies, then shut the receiver down.
@@ -261,5 +255,6 @@ class SynScanner:
         with self._lock:
             open_ports = sorted(self._open_ports)
         elapsed = time.monotonic() - started
-        print(Fore.GREEN + f"\nOpen ports found: {len(open_ports)} in {elapsed:.1f}s")
+        from ..ui import print_success
+        print_success(f"Open ports found: {len(open_ports)} in {elapsed:.1f}s")
         return open_ports

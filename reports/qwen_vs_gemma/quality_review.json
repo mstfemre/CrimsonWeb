@@ -1,0 +1,69 @@
+{
+  "method": "Manual review of validated, masked synthetic opinions against supplied fixture records; not blinded, not an automated semantic verdict",
+  "unit": "Four distinct scenarios per model; repeated identical outputs do not add independent quality samples",
+  "source_files": ["qwen_round1.json", "gemma_round1.json"],
+  "api_case_interpretations": {
+    "qwen3.5:9b": {"correct_distinctions": 4, "cases": 4},
+    "gemma4:26b": {"correct_distinctions": 4, "cases": 4},
+    "criteria": ["401 controls limited to recorded endpoint", "unauthorized cross-tenant read present, no write evidence", "403 denied read, no proven WAF attribution", "HTTP 200 error envelope does not prove data disclosure"]
+  },
+  "observations": [
+    {
+      "id": "redirect_incomplete_is_unknown",
+      "qwen": "Findings summary/risk and WAF summary/risk assert missing HTTPS redirection from incomplete control state",
+      "gemma": "Findings risk/actions assert missing HTTPS redirection; scan limitation repeats missing redirection; WAF limitation says scan incomplete due to redirection despite completed scan status",
+      "conclusion": "Both have unsupported interpretations; schema validation did not reject them"
+    },
+    {
+      "id": "referrer_policy_literal_validity",
+      "qwen": "Findings recommends strict and origin-when-crossorigin; scan recommends strict among alternatives. These are invalid values",
+      "gemma": "Findings and scan recommend the valid strict-origin-when-cross-origin",
+      "qwen_correct_scenarios": 0,
+      "gemma_correct_scenarios": 2,
+      "applicable_distinct_scenarios": 2,
+      "reference": "https://www.w3.org/TR/referrer-policy/#referrer-policies"
+    },
+    {
+      "id": "certificate_expiry_impact",
+      "qwen": "Scan impact says encryption guarantee ends on certificate expiry; conflates certificate trust/validation with encryption",
+      "gemma": "Scan impact says connections are marked untrusted, appropriately describing the trust issue",
+      "conclusion": "Gemma's description is more precise; both recognize the future expiry and renewal need"
+    },
+    {
+      "id": "waf_attribution",
+      "qwen": "Scan summary/comment assert WAF limited requests, while uncertainty says HTTP429 cannot prove a WAF rule or IP block",
+      "gemma": "Scan summary/comment preserve uncertainty between WAF and application rate limit",
+      "conclusion": "Gemma is more consistent; both WAF-specific analyses retain attack/rule uncertainty"
+    },
+    {
+      "id": "retry_after_coverage",
+      "qwen": "Neither scan nor WAF review mentions Retry-After 60 seconds",
+      "gemma": "Neither scan nor WAF review mentions Retry-After 60 seconds",
+      "conclusion": "Shared omission in observed retained explanation/remediation fields; not a schema/reference failure"
+    },
+    {
+      "id": "tls_inventory_scope",
+      "qwen": "TLSv1.3 observed, other supported versions unknown",
+      "gemma": "TLSv1.3 observed, other supported versions unknown",
+      "conclusion": "Both preserve the protocol inventory limitation"
+    },
+    {
+      "id": "false_positive_reasoning",
+      "qwen": "WAF possible with uncertainty; API 200 error possible and protected controls described as working",
+      "gemma": "WAF undetermined with uncertainty; API 200 error possible and protected controls described as working",
+      "conclusion": "Labels alone do not prove correctness; shared redirect false inference remains"
+    },
+    {
+      "id": "turkish_editorial_quality",
+      "qwen": "Predominantly Turkish, longer and repetitive; protocol spelling and an untranslated legitimate term in WAF recommendations",
+      "gemma": "Predominantly Turkish, concise and generally clearer; occasional awkward wording remains",
+      "conclusion": "Qualitative preference for Gemma, not a calibrated language score"
+    }
+  ],
+  "claims": {
+    "broad_accuracy_rate_measured": false,
+    "real_target_vulnerabilities_verified": false,
+    "both_models_have_semantic_errors": true,
+    "main_analyst_quality_preference_on_this_dataset": "gemma4:26b"
+  }
+}

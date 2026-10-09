@@ -1,0 +1,16 @@
+{
+  "name": "owned_loopback",
+  "active": true,
+  "mode": "direct_observation",
+  "allowed_network_interfaces": [],
+  "ipv4_expectation": "expected",
+  "ipv6_expectation": "forbidden",
+  "approved_egress_identity": ["127.0.0.1"],
+  "dns_expectations": {"approved_resolvers": [], "path": "application"},
+  "logging": {
+    "mask_ip_literals": true,
+    "store_raw_payloads": false,
+    "retention_days": 7,
+    "retention_enforced": false
+  }
+}

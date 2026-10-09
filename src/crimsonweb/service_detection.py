@@ -148,13 +148,29 @@ def load_probe_definitions(path: Path = PROBE_DEFINITIONS_PATH) -> list[SendExpe
     return probes
 
 
+def extract_san_dns_names(certificate: dict[str, Any]) -> list[str]:
+    """Return normalized DNS names from a parsed TLS certificate's SAN list.
+
+    Operates on the ``subject_alt_names`` produced by ``_format_certificate``.
+    Wildcard SANs (``*.example.com``) are reduced to their parent domain so a
+    caller can scope- and resolve-check them. Order-preserving and de-duplicated.
+    """
+    names = certificate.get("subject_alt_names") or []
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for raw in names:
+        host = str(raw).strip().lower().rstrip(".")
+        if host.startswith("*."):
+            host = host[2:]
+        if host and host not in seen:
+            seen.add(host)
+            normalized.append(host)
+    return normalized
+
+
 def _print_stage(title: str, detail: str = "") -> None:
-    line = "=" * 78
-    print(Fore.CYAN + line)
-    print(Fore.WHITE + Style.BRIGHT + f"[ {title} ]")
-    if detail:
-        print(Fore.LIGHTBLACK_EX + detail)
-    print(Fore.CYAN + line)
+    from .ui import print_stage
+    print_stage(title, detail)
 
 
 def _render_progress(prefix: str, done: int, total: int, width: int = 28) -> str:
@@ -703,17 +719,20 @@ class ServiceDetector:
         timeout = aiohttp.ClientTimeout(total=max(self.timeout, 5.0))
         collected: dict[int, ServiceResult] = {}
         async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
-            tasks = [self.detect_one(port, semaphore, session) for port in ports]
+            from .scheduling import bounded_results
             _print_stage(
                 "Service Detection",
                 f"Timeout: {self.timeout:.2f}s | Concurrency: {self.concurrency} | Targets: {len(ports)} open ports",
             )
-            for idx, task in enumerate(asyncio.as_completed(tasks), start=1):
-                result = await task
+            idx = 0
+            async for result in bounded_results(
+                ports, lambda port: self.detect_one(port, semaphore, session), self.concurrency,
+            ):
+                idx += 1
                 collected[result.port] = result
-                if idx % 10 == 0 or idx == len(tasks):
-                    sys.stdout.write(Fore.CYAN + "\r" + _render_progress("Fingerprinting", idx, len(tasks)))
-                    sys.stdout.flush()
+                if idx % 10 == 0 or idx == len(ports):
+                    from .ui import write_progress
+                    write_progress("Fingerprinting", idx, len(ports))
         print()
         return collected
 # --------------------------------------------------------------------------

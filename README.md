@@ -1,5 +1,51 @@
 # CrimsonWeb
 
+## HTTP assessment API — Phase 5A
+
+Phase 4A adds workspace management, versioned scope policies, deterministic authorization,
+durable request limits and scope audits. The existing HTTP scanner supports an optional
+workspace guard; CLI and legacy API contracts remain available. See
+[Phase 4A architecture, API and security boundaries](docs/PHASE4A.md).
+Phase 4B adds guarded same-origin discovery, offline OpenAPI import, persistent jobs,
+endpoint/resource relationships and bounded untrusted discovery summaries. See
+[Phase 4B implementation, API and verified limits](docs/PHASE4B.md).
+Phase 5A adds workspace privacy profiles, approved direct egress observations,
+DNS/IPv6 diagnostics, deterministic assessments and minimal privacy audits. See
+[Phase 5A implementation and verified limits](docs/PHASE5A.md),
+[privacy threat model](docs/PRIVACY_THREAT_MODEL.md) and
+[Phase 5 architecture and future plans](docs/PHASE5_ARCHITECTURE.md).
+Observations do not certify anonymity or enforce an OS-level kill switch.
+Vulnerability test modules have not been added. The existing local AI production contract
+is unchanged; discovery does not invoke models or execute AI instructions.
+
+The FastAPI MVP is available alongside the existing CLI. It validates authorized
+hosts and DNS addresses on every redirect, pins connections to validated IPs,
+checks security headers, and exports JSON reports. Missing headers are configuration
+observations, not confirmed vulnerabilities. Phase 2 adds SQLite persistence,
+Alembic migrations, verified TLS observations, cookie/HSTS/CORS analysis and defense-event imports.
+Phase 3 adds opt-in local Ollama analysis of persisted evidence, validated AI opinions,
+independent technical priorities and separate analysis history. Existing scans work with AI disabled.
+Phase 3.5 binds Ollama comments to exact evidence keys using a per-request schema,
+restricts reference arrays, and checks clearly English prose in Turkish requests.
+
+See [Phase 3 setup and AI API guide](docs/PHASE3.md) for the AI layer and
+[Phase 2 setup, migrations and API guide](docs/PHASE2.md) for technical scans.
+[Phase 3.5](docs/PHASE3.5.md) documents the gemma3:4b reference fix and real-model tests.
+[Model benchmark](docs/MODEL_BENCHMARK.md) records Gemma 3/Gemma 4 compatibility and resource measurements.
+[Phase 1](docs/PHASE1.md) records the original MVP and local lab setup.
+
+```powershell
+.venv\Scripts\python.exe -m pip install -e ".[api,dev]"
+.venv\Scripts\python.exe -m alembic -c alembic.ini upgrade head
+$env:CRIMSON_API_TOKEN = "<strong random token>"   # required since Phase 5A.1
+.venv\Scripts\python.exe -m uvicorn crimsonweb.api.app:app --app-dir src --host 127.0.0.1 --port 8000 --no-proxy-headers
+```
+
+The API refuses to start without `CRIMSON_API_TOKEN` (tokenless loopback use needs
+`CRIMSON_API_DEV_ALLOW_NO_TOKEN=1`), rejects `Host` headers outside
+`CRIMSON_API_ALLOWED_HOSTS`, and backs up an outdated SQLite database before
+migrating it. See [Phase 5A.1](docs/PHASE5A1.md).
+
 CrimsonWeb is an authorized lab and assessment scanner. It does not call nmap,
 masscan, nmap-service-probes, or external scanner binaries.
 

@@ -1,0 +1,90 @@
+{
+  "ollama_version": "0.40.1",
+  "models": [
+    {
+      "name": "qwen3.5:9b",
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "file_size_bytes": 6550825550,
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "thinking": {
+        "values": [
+          false,
+          true
+        ],
+        "default": true
+      },
+      "sampling_defaults": [
+        "temperature                    1",
+        "top_k                          20",
+        "top_p                          0.95",
+        "presence_penalty               1.5"
+      ]
+    },
+    {
+      "name": "gemma4:26b",
+      "digest": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c",
+      "file_size_bytes": 18731025629,
+      "details": {
+        "parent_model": "c4-targeted-20260929-26b/model-q4_K_M.gguf",
+        "format": "gguf",
+        "family": "gemma4",
+        "families": [
+          "gemma4"
+        ],
+        "parameter_size": "25.2B",
+        "quantization_level": "Q4_K_M",
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ],
+      "thinking": {
+        "values": [
+          false,
+          true
+        ],
+        "default": true
+      },
+      "sampling_defaults": [
+        "temperature                    1",
+        "top_k                          64",
+        "top_p                          0.95"
+      ]
+    }
+  ],
+  "initial_memory": {
+    "system_total_bytes": 33955192832,
+    "system_used_bytes": 15582482432,
+    "system_available_bytes": 18372710400,
+    "ollama_working_set_bytes": 71553024,
+    "ollama_private_commit_bytes": 152678400,
+    "ollama_process_count": 2,
+    "unreadable_process_count": 0
+  },
+  "initial_gpu": {
+    "gpu_total_mib": 8188.0,
+    "gpu_used_mib": 1168.0,
+    "gpu_util_percent": 10.0,
+    "gpu_power_w": 9.78,
+    "gpu_temperature_c": 48.0
+  }
+}

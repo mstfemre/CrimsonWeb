@@ -1,0 +1,10 @@
+{
+  "transaction": {
+    "timestamp": "2026-10-08T09:00:00+03:00",
+    "unique_id": "synthetic-lab-001",
+    "response": {"http_code": 403, "headers": {"Set-Cookie": "secret=do-not-store"}},
+    "messages": [
+      {"message": "Synthetic rule match for parser tests only", "details": {"ruleId": "949110", "data": "private payload must not be persisted"}}
+    ]
+  }
+}

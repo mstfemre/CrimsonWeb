@@ -1,0 +1,86 @@
+{
+  "started_at_utc": "2026-10-09T03:46:45.303685+00:00",
+  "groups": [
+    {
+      "round": 1,
+      "model": "qwen3.5:9b",
+      "status": "passed",
+      "resident_before_unload": [],
+      "report": "reports/qwen_vs_gemma/qwen_round1.json",
+      "exit_code": 0,
+      "resident_after": [
+        "qwen3.5:9b"
+      ]
+    },
+    {
+      "round": 1,
+      "model": "gemma4:26b",
+      "status": "passed",
+      "resident_before_unload": [
+        "qwen3.5:9b"
+      ],
+      "report": "reports/qwen_vs_gemma/gemma_round1.json",
+      "exit_code": 0,
+      "resident_after": [
+        "gemma4:26b"
+      ]
+    },
+    {
+      "round": 2,
+      "model": "gemma4:26b",
+      "status": "passed",
+      "resident_before_unload": [
+        "gemma4:26b"
+      ],
+      "report": "reports/qwen_vs_gemma/gemma_round2.json",
+      "exit_code": 0,
+      "resident_after": [
+        "gemma4:26b"
+      ]
+    },
+    {
+      "round": 2,
+      "model": "qwen3.5:9b",
+      "status": "passed",
+      "resident_before_unload": [
+        "gemma4:26b"
+      ],
+      "report": "reports/qwen_vs_gemma/qwen_round2.json",
+      "exit_code": 0,
+      "resident_after": [
+        "qwen3.5:9b"
+      ]
+    },
+    {
+      "round": 3,
+      "model": "qwen3.5:9b",
+      "status": "passed",
+      "resident_before_unload": [
+        "qwen3.5:9b"
+      ],
+      "report": "reports/qwen_vs_gemma/qwen_round3.json",
+      "exit_code": 0,
+      "resident_after": [
+        "qwen3.5:9b"
+      ]
+    },
+    {
+      "round": 3,
+      "model": "gemma4:26b",
+      "status": "passed",
+      "resident_before_unload": [
+        "qwen3.5:9b"
+      ],
+      "report": "reports/qwen_vs_gemma/gemma_round3.json",
+      "exit_code": 0,
+      "resident_after": [
+        "gemma4:26b"
+      ]
+    }
+  ],
+  "finished_at_utc": "2026-10-09T04:06:55.035581+00:00",
+  "status": "passed",
+  "resident_before_final_unload": [
+    "gemma4:26b"
+  ]
+}

@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Any
+from .privacy import sanitize
 
 
 LOG_FILE_TEXT = "crimsonweb_audit.log"
@@ -28,6 +29,13 @@ _JSONL_LOCK = threading.RLock()
 _JSONL_PATH: Path | None = None
 _JSONL_QUEUE: queue.Queue[str | None] | None = None
 _JSONL_THREAD: threading.Thread | None = None
+
+
+class _PrivacyFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.msg = sanitize(record.getMessage())
+        record.args = ()
+        return True
 
 
 def _chmod_private(path: Path) -> None:
@@ -121,6 +129,7 @@ def setup_logging(output_dir: Path | str = ".") -> None:
         encoding="utf-8",
     )
     handler.setLevel(logging.INFO)
+    handler.addFilter(_PrivacyFilter())
     handler.setFormatter(logging.Formatter("%(asctime)s - [%(levelname)s] - %(message)s"))
     logger.addHandler(handler)
     _chmod_private(text_path)
@@ -132,6 +141,7 @@ def _utc_now_iso() -> str:
 
 def audit_event(event: str, **fields: Any) -> None:
     """Write a structured JSONL audit event. Never crashes the scan."""
+    fields = sanitize(fields)
     if _JSONL_PATH is None:
         logging.info("AUDIT %s %s", event, fields)
         return
@@ -169,4 +179,4 @@ def redact_cli_args(argv: list[str]) -> str:
                 break
         if not matched:
             redacted.append(arg)
-    return " ".join(redacted)
+    return sanitize(" ".join(redacted))
