@@ -1,0 +1,1574 @@
+{
+  "schema_version": "local-lab.v1",
+  "run_id": "a9ebbbb6-5194-4017-a251-57ad76ff61b3",
+  "transport": "real_loopback_http_and_verified_tls",
+  "all_matched": true,
+  "comparisons": [
+    {
+      "scheme": "http",
+      "mode": "vulnerable",
+      "family": "xss",
+      "test_id": "a1b9df4d-7536-4d3a-89eb-bfbd2469be25",
+      "outcome": "html_injection_suspected",
+      "ground_truth_event_ids": [
+        1,
+        2
+      ],
+      "ground_truth_triggered": true,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "vulnerable",
+      "family": "sqli",
+      "test_id": "267e173a-91f7-419f-ad30-0a8a2e244e33",
+      "outcome": "sql_injection_suspected",
+      "ground_truth_event_ids": [
+        3,
+        4,
+        5
+      ],
+      "ground_truth_triggered": true,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "secure",
+      "family": "xss",
+      "test_id": "cfbd2709-f5cd-4601-8ec6-7107f224022f",
+      "outcome": "no_signal_observed",
+      "ground_truth_event_ids": [
+        10,
+        11
+      ],
+      "ground_truth_triggered": false,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "secure",
+      "family": "sqli",
+      "test_id": "977852be-c10c-4938-851e-f726e57e8c4f",
+      "outcome": "no_signal_observed",
+      "ground_truth_event_ids": [
+        12,
+        13,
+        14
+      ],
+      "ground_truth_triggered": false,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "vulnerable",
+      "family": "xss",
+      "test_id": "4300c638-f57d-4493-bc46-c28a0dd58d1d",
+      "outcome": "html_injection_suspected",
+      "ground_truth_event_ids": [
+        19,
+        20
+      ],
+      "ground_truth_triggered": true,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "vulnerable",
+      "family": "sqli",
+      "test_id": "d115abd3-7842-4e2b-b9f1-917b7cad0b70",
+      "outcome": "sql_injection_suspected",
+      "ground_truth_event_ids": [
+        21,
+        22,
+        23
+      ],
+      "ground_truth_triggered": true,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "secure",
+      "family": "xss",
+      "test_id": "0b9aeb8d-502c-4379-a52d-f2a7672fad13",
+      "outcome": "no_signal_observed",
+      "ground_truth_event_ids": [
+        28,
+        29
+      ],
+      "ground_truth_triggered": false,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "secure",
+      "family": "sqli",
+      "test_id": "da555356-0c3f-4e5c-9ced-a8f62b1bffbd",
+      "outcome": "no_signal_observed",
+      "ground_truth_event_ids": [
+        30,
+        31,
+        32
+      ],
+      "ground_truth_triggered": false,
+      "matched": true
+    }
+  ],
+  "lab_controls": [
+    {
+      "scheme": "http",
+      "mode": "vulnerable",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 6,
+      "status": 200,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "vulnerable",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 7,
+      "status": 200,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "vulnerable",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 8,
+      "status": 404,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "vulnerable",
+      "family": "sqli",
+      "source": "lab_sql_semantics_control",
+      "ground_truth_event_id": 9,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "secure",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 15,
+      "status": 200,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "secure",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 16,
+      "status": 404,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "secure",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 17,
+      "status": 404,
+      "matched": true
+    },
+    {
+      "scheme": "http",
+      "mode": "secure",
+      "family": "sqli",
+      "source": "lab_sql_semantics_control",
+      "ground_truth_event_id": 18,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "vulnerable",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 24,
+      "status": 200,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "vulnerable",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 25,
+      "status": 200,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "vulnerable",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 26,
+      "status": 404,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "vulnerable",
+      "family": "sqli",
+      "source": "lab_sql_semantics_control",
+      "ground_truth_event_id": 27,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "secure",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 33,
+      "status": 200,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "secure",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 34,
+      "status": 404,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "secure",
+      "family": "path_traversal",
+      "source": "lab_guarded_check_not_catalog",
+      "ground_truth_event_id": 35,
+      "status": 404,
+      "matched": true
+    },
+    {
+      "scheme": "https",
+      "mode": "secure",
+      "family": "sqli",
+      "source": "lab_sql_semantics_control",
+      "ground_truth_event_id": 36,
+      "matched": true
+    }
+  ],
+  "verification_reports": [
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "16c7bf39-726e-4688-926f-8b3fe6d9828e",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "a1b9df4d-7536-4d3a-89eb-bfbd2469be25",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "16c7bf39-726e-4688-926f-8b3fe6d9828e",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-6c2a605e5c88ae4d-0",
+          "status": "completed",
+          "outcome": "html_injection_suspected",
+          "confidence": "unverified",
+          "reason": "inert_html_element_reflected",
+          "evidence_refs": [
+            "verification_evidence:60b221ed-f052-415d-8758-74ec92a36cb7"
+          ],
+          "finding_ids": [
+            "8202ef4f-82f6-42bd-b057-e48b09092d90"
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "id": "8202ef4f-82f6-42bd-b057-e48b09092d90",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "16c7bf39-726e-4688-926f-8b3fe6d9828e",
+          "test_id": "a1b9df4d-7536-4d3a-89eb-bfbd2469be25",
+          "code": "html_injection_suspected",
+          "confidence": "unverified",
+          "status": "candidate",
+          "category": "xss",
+          "target_endpoint_ref": "endpoint:openapi-6c2a605e5c88ae4d-0",
+          "source_evidence_refs": [
+            "openapi:6c2a605e5c88ae4db2df178541cfb3a3"
+          ],
+          "observation_evidence_ref": "verification_evidence:60b221ed-f052-415d-8758-74ec92a36cb7",
+          "scope_decision": "authorized"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "60b221ed-f052-415d-8758-74ec92a36cb7",
+          "ref": "verification_evidence:60b221ed-f052-415d-8758-74ec92a36cb7",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "16c7bf39-726e-4688-926f-8b3fe6d9828e",
+          "test_id": "a1b9df4d-7536-4d3a-89eb-bfbd2469be25",
+          "timestamp": "2026-10-12T14:50:44.832681Z",
+          "status": "html_injection_suspected",
+          "reason": "inert_html_element_reflected",
+          "kind": "web_probe",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-6c2a605e5c88ae4d-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200
+          ],
+          "signals": [
+            "inert_element_parsed",
+            "script_execution_not_tested"
+          ],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "a1b9df4d-7536-4d3a-89eb-bfbd2469be25"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "5b95225f-d4be-4c51-b214-7bdaae272000",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "267e173a-91f7-419f-ad30-0a8a2e244e33",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "5b95225f-d4be-4c51-b214-7bdaae272000",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-cd82aa86e3f40aa1-0",
+          "status": "completed",
+          "outcome": "sql_injection_suspected",
+          "confidence": "unverified",
+          "reason": "quote_specific_sql_error_observed",
+          "evidence_refs": [
+            "verification_evidence:042ccd75-d74c-4913-8ac6-c7136e26e153"
+          ],
+          "finding_ids": [
+            "67ba5560-fbe7-4f12-acc4-fbc018f67fd6"
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "id": "67ba5560-fbe7-4f12-acc4-fbc018f67fd6",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "5b95225f-d4be-4c51-b214-7bdaae272000",
+          "test_id": "267e173a-91f7-419f-ad30-0a8a2e244e33",
+          "code": "sql_injection_suspected",
+          "confidence": "unverified",
+          "status": "candidate",
+          "category": "sqli",
+          "target_endpoint_ref": "endpoint:openapi-cd82aa86e3f40aa1-0",
+          "source_evidence_refs": [
+            "openapi:cd82aa86e3f40aa1e6bcaa6c3c43b2da"
+          ],
+          "observation_evidence_ref": "verification_evidence:042ccd75-d74c-4913-8ac6-c7136e26e153",
+          "scope_decision": "authorized"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "042ccd75-d74c-4913-8ac6-c7136e26e153",
+          "ref": "verification_evidence:042ccd75-d74c-4913-8ac6-c7136e26e153",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "5b95225f-d4be-4c51-b214-7bdaae272000",
+          "test_id": "267e173a-91f7-419f-ad30-0a8a2e244e33",
+          "timestamp": "2026-10-12T14:50:44.874247Z",
+          "status": "sql_injection_suspected",
+          "reason": "quote_specific_sql_error_observed",
+          "kind": "web_probe",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-cd82aa86e3f40aa1-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200,
+            500
+          ],
+          "signals": [
+            "database_access_not_proven",
+            "quote_specific_sql_error"
+          ],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "267e173a-91f7-419f-ad30-0a8a2e244e33"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "partially_assessed",
+          "test_ids": [
+            "267e173a-91f7-419f-ad30-0a8a2e244e33"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "73f96274-7ef4-4653-bd64-3e0225b69b1e",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "cfbd2709-f5cd-4601-8ec6-7107f224022f",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "73f96274-7ef4-4653-bd64-3e0225b69b1e",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-cc98ca70564a0e09-0",
+          "status": "completed",
+          "outcome": "no_signal_observed",
+          "confidence": "not_applicable",
+          "reason": "no_signal_in_bounded_observation",
+          "evidence_refs": [
+            "verification_evidence:6d17a46b-7e54-4014-a2ff-d95cc403321e"
+          ],
+          "finding_ids": []
+        }
+      ],
+      "findings": [],
+      "evidence": [
+        {
+          "id": "6d17a46b-7e54-4014-a2ff-d95cc403321e",
+          "ref": "verification_evidence:6d17a46b-7e54-4014-a2ff-d95cc403321e",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "73f96274-7ef4-4653-bd64-3e0225b69b1e",
+          "test_id": "cfbd2709-f5cd-4601-8ec6-7107f224022f",
+          "timestamp": "2026-10-12T14:50:44.940367Z",
+          "status": "no_signal_observed",
+          "reason": "no_signal_in_bounded_observation",
+          "kind": "web_probe",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-cc98ca70564a0e09-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200
+          ],
+          "signals": [],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "cfbd2709-f5cd-4601-8ec6-7107f224022f"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "60d9c402-a178-465a-85ac-dd2234817793",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "977852be-c10c-4938-851e-f726e57e8c4f",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "60d9c402-a178-465a-85ac-dd2234817793",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-ec1dd6244060fd9b-0",
+          "status": "completed",
+          "outcome": "no_signal_observed",
+          "confidence": "not_applicable",
+          "reason": "no_signal_in_bounded_observation",
+          "evidence_refs": [
+            "verification_evidence:0627e9ad-46eb-42fc-938d-cced704e901e"
+          ],
+          "finding_ids": []
+        }
+      ],
+      "findings": [],
+      "evidence": [
+        {
+          "id": "0627e9ad-46eb-42fc-938d-cced704e901e",
+          "ref": "verification_evidence:0627e9ad-46eb-42fc-938d-cced704e901e",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "60d9c402-a178-465a-85ac-dd2234817793",
+          "test_id": "977852be-c10c-4938-851e-f726e57e8c4f",
+          "timestamp": "2026-10-12T14:50:44.986893Z",
+          "status": "no_signal_observed",
+          "reason": "no_signal_in_bounded_observation",
+          "kind": "web_probe",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-ec1dd6244060fd9b-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200,
+            200
+          ],
+          "signals": [],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "977852be-c10c-4938-851e-f726e57e8c4f"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "partially_assessed",
+          "test_ids": [
+            "977852be-c10c-4938-851e-f726e57e8c4f"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "afa9b6da-6025-4acc-a9d6-340e30f37bcc",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "4300c638-f57d-4493-bc46-c28a0dd58d1d",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "afa9b6da-6025-4acc-a9d6-340e30f37bcc",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-9d9b8547a490710a-0",
+          "status": "completed",
+          "outcome": "html_injection_suspected",
+          "confidence": "unverified",
+          "reason": "inert_html_element_reflected",
+          "evidence_refs": [
+            "verification_evidence:4e092413-5a6a-40e7-8d3b-e8c6d277934a"
+          ],
+          "finding_ids": [
+            "4642ecf0-3cc3-4b35-b4bd-4c0275e41261"
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "id": "4642ecf0-3cc3-4b35-b4bd-4c0275e41261",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "afa9b6da-6025-4acc-a9d6-340e30f37bcc",
+          "test_id": "4300c638-f57d-4493-bc46-c28a0dd58d1d",
+          "code": "html_injection_suspected",
+          "confidence": "unverified",
+          "status": "candidate",
+          "category": "xss",
+          "target_endpoint_ref": "endpoint:openapi-9d9b8547a490710a-0",
+          "source_evidence_refs": [
+            "openapi:9d9b8547a490710ac6a7a0bcbceb5c3c"
+          ],
+          "observation_evidence_ref": "verification_evidence:4e092413-5a6a-40e7-8d3b-e8c6d277934a",
+          "scope_decision": "authorized"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "4e092413-5a6a-40e7-8d3b-e8c6d277934a",
+          "ref": "verification_evidence:4e092413-5a6a-40e7-8d3b-e8c6d277934a",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "afa9b6da-6025-4acc-a9d6-340e30f37bcc",
+          "test_id": "4300c638-f57d-4493-bc46-c28a0dd58d1d",
+          "timestamp": "2026-10-12T14:50:45.068600Z",
+          "status": "html_injection_suspected",
+          "reason": "inert_html_element_reflected",
+          "kind": "web_probe",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-9d9b8547a490710a-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200
+          ],
+          "signals": [
+            "inert_element_parsed",
+            "script_execution_not_tested"
+          ],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "4300c638-f57d-4493-bc46-c28a0dd58d1d"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "60109677-1647-49f3-bf74-3b85976a1ed9",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "d115abd3-7842-4e2b-b9f1-917b7cad0b70",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "60109677-1647-49f3-bf74-3b85976a1ed9",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-a0166fc94ce5055e-0",
+          "status": "completed",
+          "outcome": "sql_injection_suspected",
+          "confidence": "unverified",
+          "reason": "quote_specific_sql_error_observed",
+          "evidence_refs": [
+            "verification_evidence:ae407607-93f6-42ec-a814-8b71266dfd6b"
+          ],
+          "finding_ids": [
+            "dfc79d9a-5fff-41be-b57a-a9508f5a9ac3"
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "id": "dfc79d9a-5fff-41be-b57a-a9508f5a9ac3",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "60109677-1647-49f3-bf74-3b85976a1ed9",
+          "test_id": "d115abd3-7842-4e2b-b9f1-917b7cad0b70",
+          "code": "sql_injection_suspected",
+          "confidence": "unverified",
+          "status": "candidate",
+          "category": "sqli",
+          "target_endpoint_ref": "endpoint:openapi-a0166fc94ce5055e-0",
+          "source_evidence_refs": [
+            "openapi:a0166fc94ce5055eba87d1faf957da57"
+          ],
+          "observation_evidence_ref": "verification_evidence:ae407607-93f6-42ec-a814-8b71266dfd6b",
+          "scope_decision": "authorized"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ae407607-93f6-42ec-a814-8b71266dfd6b",
+          "ref": "verification_evidence:ae407607-93f6-42ec-a814-8b71266dfd6b",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "60109677-1647-49f3-bf74-3b85976a1ed9",
+          "test_id": "d115abd3-7842-4e2b-b9f1-917b7cad0b70",
+          "timestamp": "2026-10-12T14:50:45.114733Z",
+          "status": "sql_injection_suspected",
+          "reason": "quote_specific_sql_error_observed",
+          "kind": "web_probe",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-a0166fc94ce5055e-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200,
+            500
+          ],
+          "signals": [
+            "database_access_not_proven",
+            "quote_specific_sql_error"
+          ],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "d115abd3-7842-4e2b-b9f1-917b7cad0b70"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "partially_assessed",
+          "test_ids": [
+            "d115abd3-7842-4e2b-b9f1-917b7cad0b70"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "a899b07d-e935-4caf-a5af-cf64770df07a",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "0b9aeb8d-502c-4379-a52d-f2a7672fad13",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "a899b07d-e935-4caf-a5af-cf64770df07a",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-e290b1e78f8eede3-0",
+          "status": "completed",
+          "outcome": "no_signal_observed",
+          "confidence": "not_applicable",
+          "reason": "no_signal_in_bounded_observation",
+          "evidence_refs": [
+            "verification_evidence:4f96b288-4115-4e82-8c09-c4ba9d67f666"
+          ],
+          "finding_ids": []
+        }
+      ],
+      "findings": [],
+      "evidence": [
+        {
+          "id": "4f96b288-4115-4e82-8c09-c4ba9d67f666",
+          "ref": "verification_evidence:4f96b288-4115-4e82-8c09-c4ba9d67f666",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "a899b07d-e935-4caf-a5af-cf64770df07a",
+          "test_id": "0b9aeb8d-502c-4379-a52d-f2a7672fad13",
+          "timestamp": "2026-10-12T14:50:45.199822Z",
+          "status": "no_signal_observed",
+          "reason": "no_signal_in_bounded_observation",
+          "kind": "web_probe",
+          "catalog_id": "xss_reflection_probe",
+          "target_endpoint_ref": "endpoint:openapi-e290b1e78f8eede3-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200
+          ],
+          "signals": [],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "0b9aeb8d-502c-4379-a52d-f2a7672fad13"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        }
+      ]
+    },
+    {
+      "schema_version": "verification.v1",
+      "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+      "plan_id": "eadb53be-2543-4670-bb5d-b5bc62f28c5f",
+      "policy_id": "d0864979-fdb9-423f-8988-2b388cd46f6b",
+      "status": "completed",
+      "tests": [
+        {
+          "id": "da555356-0c3f-4e5c-9ced-a8f62b1bffbd",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "eadb53be-2543-4670-bb5d-b5bc62f28c5f",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-787f0cefc2494300-0",
+          "status": "completed",
+          "outcome": "no_signal_observed",
+          "confidence": "not_applicable",
+          "reason": "no_signal_in_bounded_observation",
+          "evidence_refs": [
+            "verification_evidence:aa6833dc-19e2-42c3-a2fa-4c3059ed2daa"
+          ],
+          "finding_ids": []
+        }
+      ],
+      "findings": [],
+      "evidence": [
+        {
+          "id": "aa6833dc-19e2-42c3-a2fa-4c3059ed2daa",
+          "ref": "verification_evidence:aa6833dc-19e2-42c3-a2fa-4c3059ed2daa",
+          "workspace_id": "c821972d-45f4-4df9-bb36-6242a07fcf3a",
+          "plan_id": "eadb53be-2543-4670-bb5d-b5bc62f28c5f",
+          "test_id": "da555356-0c3f-4e5c-9ced-a8f62b1bffbd",
+          "timestamp": "2026-10-12T14:50:45.256678Z",
+          "status": "no_signal_observed",
+          "reason": "no_signal_in_bounded_observation",
+          "kind": "web_probe",
+          "catalog_id": "sql_error_probe",
+          "target_endpoint_ref": "endpoint:openapi-787f0cefc2494300-0",
+          "query_parameter": "q",
+          "response_statuses": [
+            200,
+            200,
+            200
+          ],
+          "signals": [],
+          "scope_decision": "authorized",
+          "script_execution_tested": false,
+          "database_access_proven": false,
+          "raw_response_stored": false,
+          "credential_stored": false
+        }
+      ],
+      "scope_source": "Disposable fixtures created by this process",
+      "private_records_only": false,
+      "raw_response_retained": false,
+      "credentials_retained": false,
+      "model_claims_verified": false,
+      "owasp_edition": "2025",
+      "top10_coverage": [
+        {
+          "category": "A01",
+          "title": "Broken Access Control",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A02",
+          "title": "Security Misconfiguration",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A03",
+          "title": "Software Supply Chain Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A04",
+          "title": "Cryptographic Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A05",
+          "title": "Injection",
+          "status": "partially_assessed",
+          "test_ids": [
+            "da555356-0c3f-4e5c-9ced-a8f62b1bffbd"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        },
+        {
+          "category": "A06",
+          "title": "Insecure Design",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A07",
+          "title": "Authentication Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A08",
+          "title": "Software or Data Integrity Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A09",
+          "title": "Security Logging and Alerting Failures",
+          "status": "not_tested",
+          "test_ids": [],
+          "limitations": [
+            "requires_additional_authorized_evidence"
+          ]
+        },
+        {
+          "category": "A10",
+          "title": "Mishandling of Exceptional Conditions",
+          "status": "partially_assessed",
+          "test_ids": [
+            "da555356-0c3f-4e5c-9ced-a8f62b1bffbd"
+          ],
+          "limitations": [
+            "category_not_exhaustively_tested"
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "browser_script_execution_not_measured",
+    "traversal_not_in_production_catalog",
+    "LLM_disabled_operator_planning",
+    "raw_payloads_only_in_separate_lab_ground_truth"
+  ]
+}

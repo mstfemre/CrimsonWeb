@@ -417,6 +417,77 @@ class PrivacyAuditRow(Base):
     data: Mapped[dict] = mapped_column(JSON)
 
 
+class VerificationPlanRow(Base):
+    __tablename__ = "verification_plans"
+    __table_args__ = (
+        UniqueConstraint("id", "workspace_id"),
+        ForeignKeyConstraint(
+            ["policy_id", "workspace_id"],
+            ["program_policies.id", "program_policies.workspace_id"],
+        ),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    workspace_id: Mapped[str] = mapped_column(ForeignKey("workspaces.id"), index=True)
+    policy_id: Mapped[str] = mapped_column(String(36))
+    status: Mapped[str] = mapped_column(String(24), index=True)
+    created_at: Mapped[str] = mapped_column(String(40))
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class VerificationTestRow(Base):
+    __tablename__ = "verification_tests"
+    __table_args__ = (
+        UniqueConstraint("id", "workspace_id", "plan_id"),
+        ForeignKeyConstraint(
+            ["plan_id", "workspace_id"],
+            ["verification_plans.id", "verification_plans.workspace_id"],
+        ),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    workspace_id: Mapped[str] = mapped_column(String(36), index=True)
+    plan_id: Mapped[str] = mapped_column(String(36), index=True)
+    status: Mapped[str] = mapped_column(String(24), index=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class VerificationEvidenceRow(Base):
+    __tablename__ = "verification_evidence"
+    __table_args__ = (
+        UniqueConstraint("id", "workspace_id", "plan_id"),
+        ForeignKeyConstraint(
+            ["plan_id", "workspace_id"],
+            ["verification_plans.id", "verification_plans.workspace_id"],
+        ),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    workspace_id: Mapped[str] = mapped_column(String(36), index=True)
+    plan_id: Mapped[str] = mapped_column(String(36), index=True)
+    data: Mapped[dict] = mapped_column(JSON)
+
+
+class VerificationFindingRow(Base):
+    __tablename__ = "verification_findings"
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["plan_id", "workspace_id"],
+            ["verification_plans.id", "verification_plans.workspace_id"],
+        ),
+        ForeignKeyConstraint(
+            ["test_id", "workspace_id", "plan_id"],
+            [
+                "verification_tests.id",
+                "verification_tests.workspace_id",
+                "verification_tests.plan_id",
+            ],
+        ),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    workspace_id: Mapped[str] = mapped_column(String(36), index=True)
+    plan_id: Mapped[str] = mapped_column(String(36), index=True)
+    test_id: Mapped[str] = mapped_column(String(36))
+    data: Mapped[dict] = mapped_column(JSON)
+
+
 def database_url() -> str:
     return os.getenv("CRIMSON_DATABASE_URL", "sqlite:///data/crimsonweb.sqlite")
 

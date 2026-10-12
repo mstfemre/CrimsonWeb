@@ -1,0 +1,14 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title": "Synthetic authorization laboratory", "version": "1.0"},
+  "paths": {
+    "/api/objects/{object_id}": {
+      "get": {
+        "parameters": [
+          {"name": "object_id", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {"200": {"description": "Private synthetic test record"}}
+      }
+    }
+  }
+}

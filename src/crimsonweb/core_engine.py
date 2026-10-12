@@ -415,6 +415,7 @@ class WebRequestController:
         self.state_path = state_path
         self.block_events: list[WebBlockEvent] = []
         self._blocked_targets: set[tuple[str, str]] = set()
+        self._halted = False
         self._socks_sessions: dict[str, aiohttp.ClientSession] = {}
         self._curl_session = None
         if fingerprint and not CURL_CFFI_AVAILABLE:
@@ -431,7 +432,7 @@ class WebRequestController:
         parsed = urlsplit(url)
         return parsed.netloc.lower(), parsed.path or "/"
     def is_blocked(self, url: str) -> bool:
-        return self._target_key(url) in self._blocked_targets
+        return self._halted or self._target_key(url) in self._blocked_targets
     def _build_headers(self, extra_headers: dict[str, str] | None = None) -> dict[str, str]:
         ua = self.user_agent or random.choice(GENERIC_USER_AGENTS)
         # Chrome-like header ordering (Python dicts preserve insertion order)
@@ -499,6 +500,8 @@ class WebRequestController:
             decoy_url = f"{parsed.scheme}://{parsed.netloc}{decoy_path}"
             await self.request(session, decoy_url, timeout, ssl_policy, allow_redirects, is_decoy=True)
         for attempt in range(self.max_retries + 1):
+            if self.is_blocked(url):
+                return None
             node = self.egress.select(url)
             if node is None:
                 audit_event("no_egress_available", url=url)
@@ -506,6 +509,8 @@ class WebRequestController:
                 await asyncio.sleep(30.0)
                 continue
             await self.pacer.wait(url)
+            if self.is_blocked(url):
+                return None
             headers = self._build_headers(extra_headers)
             timer = TimingScope()
             try:
@@ -526,13 +531,14 @@ class WebRequestController:
                 banned, reason = self.ban_analyzer.record_error(node.id, type(exc).__name__)
                 if banned and reason is not None:
                     self.egress.mark_banned(node, reason)
+                    self._halted = True
                 audit_event(
                     "http_error",
                     url=url,
                     egress_id=node.id,
-                    error=str(exc)[:200],
+                    error=type(exc).__name__,
                 )
-                if attempt >= self.max_retries:
+                if self._halted or attempt >= self.max_retries:
                     return None
                 await asyncio.sleep(min(30.0, max(1.0, self.pacer.base_delay) * (2 ** attempt)))
                 continue
@@ -550,17 +556,10 @@ class WebRequestController:
             banned, reason = self.ban_analyzer.evaluate(
                 node.id, response.status, response.body, response.latency_ms
             )
+            if response.status in {403, 429}:
+                banned, reason = True, f"http_{response.status}_safe_stop"
             if banned and reason is not None:
-                if not block_on_ban:
-                    audit_event(
-                        "http_block_signal_observed",
-                        url=url,
-                        status=response.status,
-                        egress_id=node.id,
-                        reason=reason,
-                    )
-                    self.egress.mark_success(node)
-                    return response
+                self._halted = True
                 self.egress.mark_banned(node, reason)
                 self._blocked_targets.add(self._target_key(url))
                 event = WebBlockEvent(
@@ -574,10 +573,8 @@ class WebRequestController:
                 if self.state is not None:
                     self.state.egress_cooldowns[node.id] = time.time()
                     await self._persist_state_if_any()
-                if is_decoy:
-                    return None
-                # Retry on next iteration with a different egress
-                continue
+                # Fingerprinting may inspect this response, but cannot send again.
+                return response if not block_on_ban and not is_decoy else None
             self.egress.mark_success(node)
             return response
         return None

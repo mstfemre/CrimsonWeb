@@ -246,10 +246,10 @@ def _validate_proxy_url(proxy_url: str) -> str:
     if scheme not in SUPPORTED_PROXY_SCHEMES:
         allowed = ", ".join(sorted(SUPPORTED_PROXY_SCHEMES))
         raise SystemExit(
-            f"Unsupported proxy scheme '{parsed.scheme}' in {proxy_url!r}. Allowed: {allowed}"
+            f"Unsupported proxy scheme. Allowed: {allowed}"
         )
     if not parsed.hostname:
-        raise SystemExit(f"Proxy URL must include a host: {proxy_url!r}")
+        raise SystemExit("Proxy URL must include a host")
     if scheme in SOCKS_PROXY_SCHEMES and scheme not in REMOTE_DNS_SOCKS_SCHEMES:
         raise SystemExit(
             f"SOCKS proxy URL must use remote-DNS scheme socks5h/socks4a, got {scheme!r}: "
@@ -339,9 +339,7 @@ class EgressPool:
             reason=reason,
             cooldown_seconds=cooldown,
         )
-        if node.kind == EgressKind.TOR and self.tor_control is not None:
-            self.tor_control.signal_new_identity()
-            node.cooldown_until = time.monotonic() + min(cooldown / 2, 300.0)
+        # A defense event must never trigger a new identity to continue testing.
 
     def has_available(self) -> bool:
         now = time.monotonic()

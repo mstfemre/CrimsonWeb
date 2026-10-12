@@ -2,6 +2,8 @@
 
 import asyncio
 import hashlib
+import ipaddress
+import json
 from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
@@ -66,6 +68,8 @@ class WorkspaceService:
         reserve: bool = False,
         discovery_owner: tuple[str, str] | None = None,
         privacy_owner: tuple[str, str] | None = None,
+        credential_required: bool = False,
+        minimize_audit: bool = False,
     ) -> tuple[Decision, str | None]:
         workspace, policy = await asyncio.to_thread(
             self.store.snapshot, workspace_id, policy_id
@@ -88,11 +92,22 @@ class WorkspaceService:
             )
             if decision.allowed and (dns_error or resolution is None):
                 return Decision(allowed=False, reason=dns_error or "dns_unknown")
+            if decision.allowed and credential_required and parsed_target(request).scheme != "https":
+                lab_http = (
+                    current_workspace.program_type == "lab"
+                    and current_policy.target_scope.allow_private_networks
+                    and bool(decision.resolved_ips)
+                    and all(ipaddress.ip_address(ip).is_private for ip in decision.resolved_ips)
+                )
+                if not lab_http:
+                    return Decision(allowed=False, reason="credential_https_required")
             return decision
 
         # Raw URLs are never logged; digest only, including method/category.
         fingerprint = hashlib.sha256(
-            f"{request.method}\n{request.category}\n{request.url}".encode()
+            (f"{request.method}\n{request.category}\n{request.url}"
+             + ("\n" + json.dumps(request.query_parameters, sort_keys=True)
+                if request.query_parameters else "")).encode()
         ).hexdigest()
         admission = asyncio.create_task(
             asyncio.to_thread(
@@ -106,6 +121,7 @@ class WorkspaceService:
                 reserve,
                 discovery_owner,
                 privacy_owner,
+                minimize_audit,
             )
         )
         try:
@@ -143,11 +159,17 @@ class WorkspaceService:
         transport: httpx.AsyncBaseTransport | None = None,
         discovery_owner: tuple[str, str] | None = None,
         privacy_owner: tuple[str, str] | None = None,
+        user_agent: str | None = None,
+        observation_only: bool | None = None,
+        auth_header: tuple[str, str] | None = None,
+        minimize_audit: bool = False,
     ) -> AsyncIterator[httpx.Response]:
         """Authorize freshly, reserve atomically, pin IP, close response, release slot.
 
         A preflight is advisory; this method ALWAYS repeats authorization. No proxies,
         automatic redirects, retries, alternative IPs or AI-supplied policy changes.
+        ``auth_header`` (Phase 4C) carries one allowlisted test-identity credential;
+        its value is never logged, stored, fingerprinted or sent to the model.
         """
         decision, lease_id = await self.decide(
             workspace_id,
@@ -156,6 +178,8 @@ class WorkspaceService:
             reserve=True,
             discovery_owner=discovery_owner,
             privacy_owner=privacy_owner,
+            credential_required=auth_header is not None,
+            minimize_audit=minimize_audit,
         )
         if not decision.allowed:
             raise AuthorizationDenied(decision.reason)
@@ -167,8 +191,18 @@ class WorkspaceService:
                 decision.resolved_ips,
                 transport,
                 request.method,
-                "CrimsonWeb/Phase4B" if discovery_owner else "CrimsonWeb/Phase4A",
-                observation_only=discovery_owner is not None,
+                user_agent
+                or ("CrimsonWeb/Phase4B" if discovery_owner else "CrimsonWeb/Phase4A"),
+                observation_only=(
+                    discovery_owner is not None
+                    if observation_only is None
+                    else observation_only
+                ),
+                auth_header=auth_header,
+                # Admission permits HTTP credentials only for explicitly scoped
+                # private-network lab targets. Public targets require HTTPS.
+                allow_insecure_lab_auth=auth_header is not None and url.scheme == "http",
+                query_parameters=request.query_parameters,
             ) as response:
                 response.extensions["crimson_resolved_ips"] = decision.resolved_ips
                 if response.status_code in {403, 429}:

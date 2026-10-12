@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-12",
+  "exit_code": 1,
+  "total": 123,
+  "by_file": [
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\__main__.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+      "count": 6
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\cli_commands.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+      "count": 23
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\cve.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\connect.py",
+      "count": 4
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+      "count": 10
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\udp.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\egress.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\formatting.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\ports.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\probes\\builtin.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\probes\\registry.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\reporting.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+      "count": 24
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\state.py",
+      "count": 4
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\ui.py",
+      "count": 3
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\web_checks.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_audit_redaction.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_auth_context.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_commands.py",
+      "count": 3
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cve.py",
+      "count": 1
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+      "count": 7
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_ports.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_probes.py",
+      "count": 4
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_reporting.py",
+      "count": 3
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_service_detection.py",
+      "count": 3
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_state.py",
+      "count": 3
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_ui.py",
+      "count": 2
+    },
+    {
+      "file": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_web_checks.py",
+      "count": 2
+    }
+  ]
+}

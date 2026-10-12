@@ -1,0 +1,3637 @@
+[
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 22,
+      "row": 3
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\__main__.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from .cli import main\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 30,
+      "row": 14
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport json\nimport logging\nimport os\nimport queue\nimport threading\nfrom datetime import datetime, timezone\nfrom logging.handlers import RotatingFileHandler\nfrom pathlib import Path\nfrom typing import Any\n\nfrom .privacy import sanitize\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 56,
+      "row": 57
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 57
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 57,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 80,
+      "row": 77
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 77
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 77,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "UP017",
+    "end_location": {
+      "column": 37,
+      "row": 139
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime, timezone, UTC",
+          "end_location": {
+            "column": 40,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 10
+          }
+        },
+        {
+          "content": "UTC",
+          "end_location": {
+            "column": 37,
+            "row": 139
+          },
+          "location": {
+            "column": 25,
+            "row": 139
+          }
+        }
+      ],
+      "message": "Convert to `datetime.UTC` alias"
+    },
+    "location": {
+      "column": 25,
+      "row": 139
+    },
+    "message": "Use `datetime.UTC` alias",
+    "name": "datetime-timezone-utc",
+    "noqa_row": 139,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/datetime-timezone-utc"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 51,
+      "row": 146
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 146
+    },
+    "message": "`info()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 146,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 55,
+      "row": 157
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\audit.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 157
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 157,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 28,
+      "row": 12
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\cli_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport argparse\r\nimport importlib.util\r\nimport json\r\nimport os\r\nimport platform\r\nimport sys\r\nfrom pathlib import Path\r\nfrom typing import Iterable\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "UP035",
+    "end_location": {
+      "column": 28,
+      "row": 12
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\cli_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from collections.abc import Iterable",
+          "end_location": {
+            "column": 28,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Import from `collections.abc`"
+    },
+    "location": {
+      "column": 1,
+      "row": 12
+    },
+    "message": "Import from `collections.abc` instead: `Iterable`",
+    "name": "deprecated-import",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/deprecated-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 2,
+      "row": 98
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport argparse\r\nimport asyncio\r\nimport csv\r\nimport ctypes\r\nimport getpass\r\nimport json\r\nimport logging\r\nimport os\r\nimport random\r\nimport re\r\nimport socket\r\nimport sys\r\nimport time\r\nfrom dataclasses import asdict\r\nfrom datetime import datetime, timezone\r\nfrom pathlib import Path\r\nfrom typing import Any, Iterable\r\nfrom urllib.parse import urlsplit\r\n\r\nfrom .audit import (\r\n    audit_event,\r\n    close_audit_log,\r\n    redact_cli_args,\r\n    setup_logging,\r\n)\r\nfrom .cli_commands import normalize_command_argv, run_utility_command\r\nfrom .cve import HTTPX_IMPORT_ERROR, THROTTLE_IMPORT_ERROR, CveLookup\r\nfrom .discovery.connect import (\r\n    DEFAULT_CONNECT_TIMEOUT,\r\n    DEFAULT_PORT_CONCURRENCY,\r\n    AsyncConnectScanner,\r\n)\r\nfrom .discovery.syn import SynScanner\r\nfrom .discovery.udp import DEFAULT_UDP_TIMEOUT, UdpScanner\r\nfrom .egress import (\r\n    DECOY_FALLBACK_PATHS,\r\n    DEFAULT_BAN_COOLDOWN_SECONDS,\r\n    DEFAULT_BAN_SOFT_THRESHOLD,\r\n    DEFAULT_DECOY_RATE,\r\n    DEFAULT_TOR_CONTROL_HOST,\r\n    DEFAULT_TOR_CONTROL_PORT,\r\n    DEFAULT_TOR_NEW_IDENTITY_WAIT,\r\n    DEFAULT_TOR_SOCKS_PROXY,\r\n    DEFAULT_WEB_MAX_GLOBAL_RATE,\r\n    DEFAULT_WEB_REQUEST_DELAY,\r\n    DEFAULT_WEB_SENSITIVE_DELAY,\r\n    SOCKS_PROXY_SCHEMES,\r\n    AdaptivePacer,\r\n    BanSignalAnalyzer,\r\n    DecoyInjector,\r\n    EgressKind,\r\n    EgressMode,\r\n    EgressNode,\r\n    EgressPool,\r\n    TorControlClient,\r\n    build_egress_from_args,\r\n    parse_status_codes,\r\n    redact_proxy_url,\r\n)\r\nfrom .models import ServiceResult, WebBlockEvent, WebResponse\r\nfrom .ports import DEFAULT_TOP_PORTS_COUNT, looks_like_ip, parse_ports, target_from_args\r\nfrom .reporting import web_finding_count, write_executive_report\r\nfrom .service_detection import (\r\n    DEFAULT_BANNER_TIMEOUT,\r\n    DEFAULT_SERVICE_CONCURRENCY,\r\n    ServiceDetector,\r\n    extract_san_dns_names,\r\n)\r\nfrom .state import ScanState, default_state_path, load_state, save_state\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 100
+          },
+          "location": {
+            "column": 1,
+            "row": 29
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 29
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 29,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "UP035",
+    "end_location": {
+      "column": 33,
+      "row": 46
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import Any\r\nfrom collections.abc import Iterable",
+          "end_location": {
+            "column": 33,
+            "row": 46
+          },
+          "location": {
+            "column": 1,
+            "row": 46
+          }
+        }
+      ],
+      "message": "Import from `collections.abc`"
+    },
+    "location": {
+      "column": 1,
+      "row": 46
+    },
+    "message": "Import from `collections.abc` instead: `Iterable`",
+    "name": "deprecated-import",
+    "noqa_row": 46,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/deprecated-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 73,
+      "row": 118
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "    from curl_cffi.requests import (\r\n        AsyncSession as _CurlCffiAsyncSession,  # type: ignore[import]\r\n    )\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 119
+          },
+          "location": {
+            "column": 1,
+            "row": 118
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 5,
+      "row": 118
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 118,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 60,
+      "row": 124
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "    from colorama import Fore, Style\r\n    from colorama import init as colorama_init\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 125
+          },
+          "location": {
+            "column": 1,
+            "row": 124
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 5,
+      "row": 124
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 124,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "FURB188",
+    "end_location": {
+      "column": 34,
+      "row": 183
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "candidate = candidate.removeprefix(\"*.\")",
+          "end_location": {
+            "column": 34,
+            "row": 183
+          },
+          "location": {
+            "column": 5,
+            "row": 182
+          }
+        }
+      ],
+      "message": "Use removeprefix instead of assignment conditional upon startswith."
+    },
+    "location": {
+      "column": 5,
+      "row": 182
+    },
+    "message": "Prefer `str.removeprefix()` over conditionally replacing with slice.",
+    "name": "slice-to-remove-prefix-or-suffix",
+    "noqa_row": 182,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/slice-to-remove-prefix-or-suffix"
+  },
+  {
+    "cell": null,
+    "code": "PYI034",
+    "end_location": {
+      "column": 18,
+      "row": 193
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "from typing import Any, Iterable, Self",
+          "end_location": {
+            "column": 33,
+            "row": 46
+          },
+          "location": {
+            "column": 1,
+            "row": 46
+          }
+        },
+        {
+          "content": "Self",
+          "end_location": {
+            "column": 41,
+            "row": 193
+          },
+          "location": {
+            "column": 28,
+            "row": 193
+          }
+        }
+      ],
+      "message": "Use `Self` as return type"
+    },
+    "location": {
+      "column": 9,
+      "row": 193
+    },
+    "message": "`__enter__` methods in classes like `TimingScope` usually return `self` at runtime",
+    "name": "non-self-return-type",
+    "noqa_row": 193,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/non-self-return-type"
+  },
+  {
+    "cell": null,
+    "code": "UP037",
+    "end_location": {
+      "column": 41,
+      "row": 193
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "TimingScope",
+          "end_location": {
+            "column": 41,
+            "row": 193
+          },
+          "location": {
+            "column": 28,
+            "row": 193
+          }
+        }
+      ],
+      "message": "Remove quotes"
+    },
+    "location": {
+      "column": 28,
+      "row": 193
+    },
+    "message": "Remove quotes from type annotation",
+    "name": "quoted-annotation",
+    "noqa_row": 193,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/quoted-annotation"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 68,
+      "row": 307
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, aiohttp.ClientError, OSError)",
+          "end_location": {
+            "column": 68,
+            "row": 307
+          },
+          "location": {
+            "column": 16,
+            "row": 307
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 307
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 307,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 14,
+      "row": 424
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 422
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 422,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 25,
+      "row": 464
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 464
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 464,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 65,
+      "row": 465
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 465
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 465,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 78,
+      "row": 508
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 508
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 508,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 29,
+      "row": 529
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 529
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 529,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 25,
+      "row": 676
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 16,
+      "row": 676
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 676,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 21,
+      "row": 683
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 683
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 683,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 89,
+      "row": 801
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 801
+    },
+    "message": "`info()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 801,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 92,
+      "row": 847
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 847
+    },
+    "message": "`info()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 847,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 66,
+      "row": 957
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 957
+    },
+    "message": "`info()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 957,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "UP017",
+    "end_location": {
+      "column": 46,
+      "row": 1043
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime, timezone, UTC",
+          "end_location": {
+            "column": 40,
+            "row": 44
+          },
+          "location": {
+            "column": 1,
+            "row": 44
+          }
+        },
+        {
+          "content": "UTC",
+          "end_location": {
+            "column": 46,
+            "row": 1043
+          },
+          "location": {
+            "column": 34,
+            "row": 1043
+          }
+        }
+      ],
+      "message": "Convert to `datetime.UTC` alias"
+    },
+    "location": {
+      "column": 34,
+      "row": 1043
+    },
+    "message": "Use `datetime.UTC` alias",
+    "name": "datetime-timezone-utc",
+    "noqa_row": 1043,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/datetime-timezone-utc"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 21,
+      "row": 1302
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 1302
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 1302,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 88,
+      "row": 1339
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 1339
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 1339,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 90,
+      "row": 1352
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 1352
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 1352,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 14,
+      "row": 1362
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\core_engine.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 1359
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 1359,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 71,
+      "row": 181
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\cve.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, httpx.HTTPError, ValueError)",
+          "end_location": {
+            "column": 71,
+            "row": 181
+          },
+          "location": {
+            "column": 20,
+            "row": 181
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 20,
+      "row": 181
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 181,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "RUF019",
+    "end_location": {
+      "column": 51,
+      "row": 192
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\cve.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "metrics.get(key)",
+          "end_location": {
+            "column": 51,
+            "row": 192
+          },
+          "location": {
+            "column": 20,
+            "row": 192
+          }
+        }
+      ],
+      "message": "Replace with `dict.get`"
+    },
+    "location": {
+      "column": 20,
+      "row": 192
+    },
+    "message": "Unnecessary key check before dictionary access",
+    "name": "unnecessary-key-check",
+    "noqa_row": 192,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unnecessary-key-check"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 11,
+      "row": 6
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\connect.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Remove unused import: `sys`"
+    },
+    "location": {
+      "column": 8,
+      "row": 6
+    },
+    "message": "`sys` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 6,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 55
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\connect.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 54
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 54,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 54
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\connect.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 54
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 54,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 51,
+      "row": 57
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\connect.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError)",
+          "end_location": {
+            "column": 51,
+            "row": 57
+          },
+          "location": {
+            "column": 20,
+            "row": 57
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 20,
+      "row": 57
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 57,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 11,
+      "row": 7
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Remove unused import: `sys`"
+    },
+    "location": {
+      "column": 8,
+      "row": 7
+    },
+    "message": "`sys` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 7,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 64,
+      "row": 44
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "        from scapy.all import IP, TCP, AsyncSniffer, IPv6, conf\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 45
+          },
+          "location": {
+            "column": 1,
+            "row": 44
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 9,
+      "row": 44
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 44,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 21,
+      "row": 197
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 196
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 196,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 29,
+      "row": 196
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 196
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 196,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 21,
+      "row": 245
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 244
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 244,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 29,
+      "row": 244
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 20,
+      "row": 244
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 244,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 250
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 249
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 249,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 249
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 249
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 249,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 254
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 253
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 253,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 253
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\syn.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 253
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 253,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 47,
+      "row": 151
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\discovery\\udp.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError)",
+          "end_location": {
+            "column": 47,
+            "row": 151
+          },
+          "location": {
+            "column": 16,
+            "row": 151
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 151
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 151,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 61,
+      "row": 205
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\egress.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 205
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 205,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 87,
+      "row": 462
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\egress.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 462
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 462,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 10,
+      "row": 5
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\formatting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport re\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 21,
+      "row": 95
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\ports.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 95
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 95,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 36,
+      "row": 11
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\probes\\builtin.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nimport dataclasses\r\nimport re\r\nfrom typing import Any\r\n\r\nfrom ..formatting import format_banner_bytes\r\nfrom ..models import ServiceResult\r\nfrom .registry import ProbeRegistry\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 47,
+      "row": 6
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\probes\\registry.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\r\n\r\nfrom collections.abc import Iterable, Iterator\r\nfrom dataclasses import dataclass\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "UP037",
+    "end_location": {
+      "column": 69,
+      "row": 22
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\probes\\registry.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "ProbeRegistry",
+          "end_location": {
+            "column": 69,
+            "row": 22
+          },
+          "location": {
+            "column": 54,
+            "row": 22
+          }
+        }
+      ],
+      "message": "Remove quotes"
+    },
+    "location": {
+      "column": 54,
+      "row": 22
+    },
+    "message": "Remove quotes from type annotation",
+    "name": "quoted-annotation",
+    "noqa_row": 22,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/quoted-annotation"
+  },
+  {
+    "cell": null,
+    "code": "UP017",
+    "end_location": {
+      "column": 42,
+      "row": 58
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\reporting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime, timezone, UTC",
+          "end_location": {
+            "column": 40,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        },
+        {
+          "content": "UTC",
+          "end_location": {
+            "column": 42,
+            "row": 58
+          },
+          "location": {
+            "column": 30,
+            "row": 58
+          }
+        }
+      ],
+      "message": "Convert to `datetime.UTC` alias"
+    },
+    "location": {
+      "column": 30,
+      "row": 58
+    },
+    "message": "Use `datetime.UTC` alias",
+    "name": "datetime-timezone-utc",
+    "noqa_row": 58,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/datetime-timezone-utc"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 11,
+      "row": 12
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Remove unused import: `sys`"
+    },
+    "location": {
+      "column": 8,
+      "row": 12
+    },
+    "message": "`sys` imported but unused",
+    "name": "unused-import",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 2,
+      "row": 53
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from .cve import CveLookup\r\nfrom .formatting import format_banner_bytes\r\nfrom .models import ServiceResult, Target, WebFinding, WebResponse\r\nfrom .ports import looks_like_ip\r\nfrom .probes.builtin import (\r\n    ACTIVE_PROBE_REGISTRY,\r\n    detect_waf,\r\n    port_hint_result,\r\n    result_from_active_probe_response,\r\n    service_result_from_greeting,\r\n)\r\nfrom .web_checks import (\r\n    API_DISCOVERY_PATHS,\r\n    CORS_TEST_ORIGIN,\r\n    SENSITIVE_PATHS,\r\n    analyze_cookie_flags,\r\n    analyze_security_headers,\r\n    cors_findings_from_headers,\r\n)\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 56
+          },
+          "location": {
+            "column": 1,
+            "row": 35
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 35
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 35,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 84,
+      "row": 126
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 13,
+      "row": 126
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 126,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 10,
+      "row": 143
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 141
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 141,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "FURB188",
+    "end_location": {
+      "column": 28,
+      "row": 164
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "host = host.removeprefix(\"*.\")",
+          "end_location": {
+            "column": 28,
+            "row": 164
+          },
+          "location": {
+            "column": 9,
+            "row": 163
+          }
+        }
+      ],
+      "message": "Use removeprefix instead of assignment conditional upon startswith."
+    },
+    "location": {
+      "column": 9,
+      "row": 163
+    },
+    "message": "Prefer `str.removeprefix()` over conditionally replacing with slice.",
+    "name": "slice-to-remove-prefix-or-suffix",
+    "noqa_row": 163,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/slice-to-remove-prefix-or-suffix"
+  },
+  {
+    "cell": null,
+    "code": "UP017",
+    "end_location": {
+      "column": 61,
+      "row": 273
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime, timezone, UTC",
+          "end_location": {
+            "column": 40,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 15
+          }
+        },
+        {
+          "content": "UTC",
+          "end_location": {
+            "column": 61,
+            "row": 273
+          },
+          "location": {
+            "column": 49,
+            "row": 273
+          }
+        }
+      ],
+      "message": "Convert to `datetime.UTC` alias"
+    },
+    "location": {
+      "column": 49,
+      "row": 273
+    },
+    "message": "Use `datetime.UTC` alias",
+    "name": "datetime-timezone-utc",
+    "noqa_row": 273,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/datetime-timezone-utc"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 36,
+      "row": 364
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "TimeoutError",
+          "end_location": {
+            "column": 36,
+            "row": 364
+          },
+          "location": {
+            "column": 16,
+            "row": 364
+          }
+        }
+      ],
+      "message": "Replace `asyncio.TimeoutError` with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 364
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 364,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 61,
+      "row": 414
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError, ssl.SSLError)",
+          "end_location": {
+            "column": 61,
+            "row": 414
+          },
+          "location": {
+            "column": 16,
+            "row": 414
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 414
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 414,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 422
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 421
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 421,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 421
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 421
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 421,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 61,
+      "row": 450
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError, ssl.SSLError)",
+          "end_location": {
+            "column": 61,
+            "row": 450
+          },
+          "location": {
+            "column": 16,
+            "row": 450
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 450
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 450,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 458
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 457
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 457,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 457
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 457
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 457,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 47,
+      "row": 525
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError)",
+          "end_location": {
+            "column": 47,
+            "row": 525
+          },
+          "location": {
+            "column": 16,
+            "row": 525
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 525
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 525,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 533
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 532
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 532,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 532
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 532
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 532,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 51,
+      "row": 545
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError)",
+          "end_location": {
+            "column": 51,
+            "row": 545
+          },
+          "location": {
+            "column": 20,
+            "row": 545
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 20,
+      "row": 545
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 545,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 29,
+      "row": 553
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 552
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 552,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 37,
+      "row": 552
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 552
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 552,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "RUF059",
+    "end_location": {
+      "column": 19,
+      "row": 645
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "_reader",
+          "end_location": {
+            "column": 19,
+            "row": 645
+          },
+          "location": {
+            "column": 13,
+            "row": 645
+          }
+        }
+      ],
+      "message": "Prefix it with an underscore or any other dummy variable pattern"
+    },
+    "location": {
+      "column": 13,
+      "row": 645
+    },
+    "message": "Unpacked variable `reader` is never used",
+    "name": "unused-unpacked-variable",
+    "noqa_row": 645,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-unpacked-variable"
+  },
+  {
+    "cell": null,
+    "code": "UP041",
+    "end_location": {
+      "column": 61,
+      "row": 649
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "(TimeoutError, OSError, ssl.SSLError)",
+          "end_location": {
+            "column": 61,
+            "row": 649
+          },
+          "location": {
+            "column": 16,
+            "row": 649
+          }
+        }
+      ],
+      "message": "Replace with builtin `TimeoutError`"
+    },
+    "location": {
+      "column": 16,
+      "row": 649
+    },
+    "message": "Replace aliased errors with `TimeoutError`",
+    "name": "timeout-error-alias",
+    "noqa_row": 649,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/timeout-error-alias"
+  },
+  {
+    "cell": null,
+    "code": "S110",
+    "end_location": {
+      "column": 25,
+      "row": 657
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 17,
+      "row": 656
+    },
+    "message": "`try`-`except`-`pass` detected, consider logging the exception",
+    "name": "try-except-pass",
+    "noqa_row": 656,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/try-except-pass"
+  },
+  {
+    "cell": null,
+    "code": "BLE001",
+    "end_location": {
+      "column": 33,
+      "row": 656
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 656
+    },
+    "message": "Do not catch blind exception: `Exception`",
+    "name": "blind-except",
+    "noqa_row": 656,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blind-except"
+  },
+  {
+    "cell": null,
+    "code": "SIM114",
+    "end_location": {
+      "column": 47,
+      "row": 706
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": " or result.version in {\"open, no banner\", \"open, probe failed\"}",
+          "end_location": {
+            "column": 70,
+            "row": 703
+          },
+          "location": {
+            "column": 70,
+            "row": 703
+          }
+        },
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 707
+          },
+          "location": {
+            "column": 1,
+            "row": 705
+          }
+        }
+      ],
+      "message": "Combine `if` branches"
+    },
+    "location": {
+      "column": 21,
+      "row": 703
+    },
+    "message": "Combine `if` branches using logical `or` operator",
+    "name": "if-with-same-arms",
+    "noqa_row": 703,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/if-with-same-arms"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 12
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\state.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport hashlib\nimport json\nimport logging\nimport os\nimport tempfile\nimport time\nfrom dataclasses import asdict, dataclass, field\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "UP037",
+    "end_location": {
+      "column": 73,
+      "row": 42
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\state.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "ScanState",
+          "end_location": {
+            "column": 73,
+            "row": 42
+          },
+          "location": {
+            "column": 62,
+            "row": 42
+          }
+        }
+      ],
+      "message": "Remove quotes"
+    },
+    "location": {
+      "column": 62,
+      "row": 42
+    },
+    "message": "Remove quotes from type annotation",
+    "name": "quoted-annotation",
+    "noqa_row": 42,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/quoted-annotation"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 54,
+      "row": 82
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\state.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 82
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 82,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "LOG015",
+    "end_location": {
+      "column": 54,
+      "row": 97
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\state.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 97
+    },
+    "message": "`warning()` call on root logger",
+    "name": "root-logger-call",
+    "noqa_row": 97,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/root-logger-call"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 43,
+      "row": 14
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\ui.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport os\nfrom contextlib import contextmanager\nfrom typing import Any, Callable, Iterator\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 10
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "UP035",
+    "end_location": {
+      "column": 43,
+      "row": 14
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\ui.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import Any\nfrom collections.abc import Callable, Iterator",
+          "end_location": {
+            "column": 43,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Import from `collections.abc`"
+    },
+    "location": {
+      "column": 1,
+      "row": 14
+    },
+    "message": "Import from `collections.abc` instead: `Callable`, `Iterator`",
+    "name": "deprecated-import",
+    "noqa_row": 14,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/deprecated-import"
+  },
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 33,
+      "row": 18
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\ui.py",
+    "fix": null,
+    "location": {
+      "column": 28,
+      "row": 18
+    },
+    "message": "`rich.panel.Panel` imported but unused; consider using `importlib.util.find_spec` to test for availability",
+    "name": "unused-import",
+    "noqa_row": 18,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 23,
+      "row": 6
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\src\\crimsonweb\\web_checks.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport re\nfrom typing import Any\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 3
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_audit_redaction.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import sys\nimport unittest\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 59,
+      "row": 9
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_audit_redaction.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 59,
+            "row": 9
+          },
+          "location": {
+            "column": 45,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 47,
+      "row": 9
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 3
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_auth_context.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import sys\nimport unittest\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 77,
+      "row": 9
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_auth_context.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 77,
+            "row": 9
+          },
+          "location": {
+            "column": 63,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 65,
+      "row": 9
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 8
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import contextlib\r\nimport io\r\nimport os\r\nimport subprocess\r\nimport sys\r\nimport tempfile\r\nimport unittest\r\nfrom pathlib import Path\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 52,
+      "row": 14
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 52,
+            "row": 14
+          },
+          "location": {
+            "column": 38,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 40,
+      "row": 14
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 14,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 77,
+      "row": 21
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cli_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 77,
+            "row": 21
+          },
+          "location": {
+            "column": 63,
+            "row": 21
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 65,
+      "row": 21
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 60,
+      "row": 4
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_cve.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import asyncio\r\nimport unittest\r\n\r\nfrom crimsonweb.cve import MAX_CVE_CACHE_ENTRIES, CveLookup\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 7
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import asyncio\r\nimport contextlib\r\nimport io\r\nimport socket\r\nimport sys\r\nimport unittest\r\nfrom pathlib import Path\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 37,
+      "row": 17
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from crimsonweb.discovery.connect import AsyncConnectScanner  # noqa: E402\r\nfrom crimsonweb.discovery.syn import estimate_os_from_ttl  # noqa: E402\r\nfrom crimsonweb.discovery.udp import (  # noqa: E402\r\n    UDP_SYSLOG_PORT,\r\n    UdpScanner,\r\n    build_ikev2_sa_init_probe,\r\n)\r\nfrom crimsonweb.formatting import format_banner_bytes  # noqa: E402\r\nfrom crimsonweb.models import Target  # noqa: E402\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 13
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 13
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 13,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 75,
+      "row": 13
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 75,
+            "row": 13
+          },
+          "location": {
+            "column": 61,
+            "row": 13
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 63,
+      "row": 13
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 13,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 72,
+      "row": 14
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 72,
+            "row": 14
+          },
+          "location": {
+            "column": 58,
+            "row": 14
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 60,
+      "row": 14
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 14,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 106,
+      "row": 15
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 106,
+            "row": 15
+          },
+          "location": {
+            "column": 92,
+            "row": 15
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 94,
+      "row": 15
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 15,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 68,
+      "row": 16
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 68,
+            "row": 16
+          },
+          "location": {
+            "column": 54,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 56,
+      "row": 16
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 16,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 51,
+      "row": 17
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_discovery.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 51,
+            "row": 17
+          },
+          "location": {
+            "column": 37,
+            "row": 17
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 39,
+      "row": 17
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 5
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_ports.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import argparse\nimport socket\nimport sys\nimport unittest\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 88,
+      "row": 11
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_ports.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 88,
+            "row": 11
+          },
+          "location": {
+            "column": 74,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 76,
+      "row": 11
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 11,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 3
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import sys\r\nimport unittest\r\nfrom pathlib import Path\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 58,
+      "row": 9
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 58,
+            "row": 9
+          },
+          "location": {
+            "column": 44,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 46,
+      "row": 9
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 54,
+      "row": 10
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 54,
+            "row": 10
+          },
+          "location": {
+            "column": 40,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 42,
+      "row": 10
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 67,
+      "row": 17
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_probes.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 67,
+            "row": 17
+          },
+          "location": {
+            "column": 53,
+            "row": 17
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 55,
+      "row": 17
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 4
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_reporting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import sys\nimport tempfile\nimport unittest\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 78,
+      "row": 10
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_reporting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 78,
+            "row": 10
+          },
+          "location": {
+            "column": 64,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 66,
+      "row": 10
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 89,
+      "row": 11
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_reporting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 89,
+            "row": 11
+          },
+          "location": {
+            "column": 75,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 77,
+      "row": 11
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 11,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 34,
+      "row": 5
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import socket\r\nimport sys\r\nimport unittest\r\nfrom pathlib import Path\r\nfrom types import SimpleNamespace\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 64,
+      "row": 11
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 64,
+            "row": 11
+          },
+          "location": {
+            "column": 50,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 52,
+      "row": 11
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 11,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 71,
+      "row": 12
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_service_detection.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 71,
+            "row": 12
+          },
+          "location": {
+            "column": 57,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 59,
+      "row": 12
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 4
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_state.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import sys\nimport tempfile\nimport unittest\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 76,
+      "row": 10
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_state.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from crimsonweb.state import (  # noqa: E402\n    ScanState,\n    load_state,\n    save_state,\n    target_hash,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 10
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 90,
+      "row": 10
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_state.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 90,
+            "row": 10
+          },
+          "location": {
+            "column": 76,
+            "row": 10
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 78,
+      "row": 10
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 10,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 44,
+      "row": 12
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_ui.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import os\nimport socket\nimport subprocess\nimport sys\nfrom io import StringIO\n\nfrom rich.console import Console\n\nfrom crimsonweb import ui\nfrom crimsonweb.models import ServiceResult\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "PLW1510",
+    "end_location": {
+      "column": 29,
+      "row": 52
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_ui.py",
+    "fix": {
+      "applicability": "displayonly",
+      "edits": [
+        {
+          "content": "check=False, ",
+          "end_location": {
+            "column": 13,
+            "row": 57
+          },
+          "location": {
+            "column": 13,
+            "row": 57
+          }
+        }
+      ],
+      "message": "Add explicit `check=False`"
+    },
+    "location": {
+      "column": 15,
+      "row": 52
+    },
+    "message": "`subprocess.run` without explicit `check` argument",
+    "name": "subprocess-run-without-check",
+    "noqa_row": 52,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/subprocess-run-without-check"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 25,
+      "row": 3
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_web_checks.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import sys\nimport unittest\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 1,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 50,
+      "row": 9
+    },
+    "filename": "C:\\Users\\mstfc\\OneDrive\\Belgeler\\CrimsonWeb\\tests\\test_web_checks.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 50,
+            "row": 9
+          },
+          "location": {
+            "column": 36,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 38,
+      "row": 9
+    },
+    "message": "Unused `noqa` directive (non-enabled: `E402`)",
+    "name": "unused-noqa",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  }
+]

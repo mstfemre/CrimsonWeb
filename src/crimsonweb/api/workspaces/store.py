@@ -280,6 +280,7 @@ class WorkspaceStore:
         reserve=False,
         discovery_owner=None,
         privacy_owner=None,
+        minimize_audit=False,
     ):
         with self.transaction() as session:
             now = clock()
@@ -422,8 +423,8 @@ class WorkspaceStore:
                 decision.allowed,
                 decision.reason,
                 now,
-                fingerprint,
-                [] if privacy_owner else decision.resolved_ips,
+                None if minimize_audit else fingerprint,
+                [] if privacy_owner or minimize_audit else decision.resolved_ips,
             )
             return decision, lease_id
 

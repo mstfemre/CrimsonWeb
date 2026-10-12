@@ -59,20 +59,32 @@ class AISettings(BaseModel):
     thinking: bool | None = None
 
     @classmethod
+    def for_web_profile(cls, name: str) -> "AISettings":
+        """Opt-in local profiles; selecting a profile never enables AI or loads a model."""
+        models = {"gemma-web": "gemma4:26b", "qwen-web": "qwen3.5:9b"}
+        if name not in models:
+            raise ValueError("Unknown local AI profile")
+        return cls(model=models[name], thinking=False, context_tokens=8192,
+                   max_output_tokens=4096, timeout_seconds=300, max_concurrency=1)
+
+    @classmethod
     def from_env(cls) -> "AISettings":
-        thinking = os.getenv("CRIMSON_OLLAMA_THINK", "default").lower()
+        profile = os.getenv("CRIMSON_AI_PROFILE", "")
+        defaults = cls.for_web_profile(profile) if profile else cls()
+        default_thinking = "default" if defaults.thinking is None else str(defaults.thinking).lower()
+        thinking = os.getenv("CRIMSON_OLLAMA_THINK", default_thinking).lower()
         if thinking not in {"default", "true", "false"}:
             raise ValueError("Invalid thinking configuration")
         return cls(
             enabled=os.getenv("CRIMSON_AI_ENABLED", "false").lower() == "true",
             base_url=os.getenv("CRIMSON_OLLAMA_URL", "http://127.0.0.1:11434"),
-            model=os.getenv("CRIMSON_OLLAMA_MODEL", ""),
-            timeout_seconds=os.getenv("CRIMSON_AI_TIMEOUT", "90"),
-            max_concurrency=os.getenv("CRIMSON_AI_MAX_CONCURRENCY", "2"),
+            model=os.getenv("CRIMSON_OLLAMA_MODEL", defaults.model),
+            timeout_seconds=os.getenv("CRIMSON_AI_TIMEOUT", defaults.timeout_seconds),
+            max_concurrency=os.getenv("CRIMSON_AI_MAX_CONCURRENCY", defaults.max_concurrency),
             calls_per_minute=os.getenv("CRIMSON_AI_CALLS_PER_MINUTE", "20"),
             max_input_bytes=os.getenv("CRIMSON_AI_MAX_INPUT_BYTES", "32768"),
-            max_output_tokens=os.getenv("CRIMSON_AI_MAX_OUTPUT_TOKENS", "4096"),
-            context_tokens=os.getenv("CRIMSON_AI_CONTEXT_TOKENS", "16384"),
+            max_output_tokens=os.getenv("CRIMSON_AI_MAX_OUTPUT_TOKENS", defaults.max_output_tokens),
+            context_tokens=os.getenv("CRIMSON_AI_CONTEXT_TOKENS", defaults.context_tokens),
             thinking={"default": None, "true": True, "false": False}[thinking],
         )
 

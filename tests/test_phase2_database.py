@@ -92,7 +92,7 @@ def test_migration_upgrade_downgrade_and_model_consistency(tmp_path):
     with repo.engine.begin() as connection:
         assert (
             connection.scalar(text("SELECT version_num FROM alembic_version"))
-            == "0005_phase5a"
+            == "0006_phase4c"
         )
         assert (
             compare_metadata(MigrationContext.configure(connection), Base.metadata)

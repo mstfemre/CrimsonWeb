@@ -1,5 +1,21 @@
 # CrimsonWeb
 
+Local HTTP/HTTPS vulnerable and secure fixtures are available through
+`python -m crimsonweb.local_lab verify`. The bridge uses real loopback sockets,
+verified per-run TLS and a separate JSON ground truth log. See
+[Local Vulnerability Laboratory](docs/LOCAL_VULNERABILITY_LAB.md).
+
+Web/API verification is available through `crimsonweb web plan`, `approve`,
+`execute`, `report` and `cancel`, without a port scan. See
+[Phase 4C.1 web workflow and privacy hardening](docs/PHASE4C1.md).
+The optional web catalog now includes inert HTML reflection, SQL error differential
+and configuration observations, plus bounded model-guided follow-up plans. Use
+`web plan --top10` for an honest OWASP 2025 coverage report; unsupported categories
+remain `not_tested`. See [web catalog and Top10 workflow](docs/WEB_TOP10_ENGINE.md).
+Optimized local `gemma-web` and `qwen-web` profiles are available. Use
+`web plan --require-model` to reject operator fallback when model planning fails;
+follow-up plans inherit this requirement. See [Gemma setup and real validation](docs/GEMMA_WEB_SETUP.md).
+
 ## HTTP assessment API — Phase 5A
 
 Phase 4A adds workspace management, versioned scope policies, deterministic authorization,
@@ -15,8 +31,12 @@ DNS/IPv6 diagnostics, deterministic assessments and minimal privacy audits. See
 [privacy threat model](docs/PRIVACY_THREAT_MODEL.md) and
 [Phase 5 architecture and future plans](docs/PHASE5_ARCHITECTURE.md).
 Observations do not certify anonymity or enforce an OS-level kill switch.
-Vulnerability test modules have not been added. The existing local AI production contract
-is unchanged; discovery does not invoke models or execute AI instructions.
+Phase 4C adds operator-approved, read-only API authorization comparison with two
+researcher-supplied test identities. Its optional local model selects fixed catalog
+tests; the deterministic executor reuses the scope guard and retains minimal evidence.
+See [Phase 4C usage, security boundaries and validation](docs/PHASE4C.md).
+The existing local AI production contract is unchanged; discovery does not invoke
+models or execute AI instructions.
 
 The FastAPI MVP is available alongside the existing CLI. It validates authorized
 hosts and DNS addresses on every redirect, pins connections to validated IPs,
@@ -36,6 +56,7 @@ See [Phase 3 setup and AI API guide](docs/PHASE3.md) for the AI layer and
 
 ```powershell
 .venv\Scripts\python.exe -m pip install -e ".[api,dev]"
+# Existing DB: make a backup before a manual Alembic upgrade.
 .venv\Scripts\python.exe -m alembic -c alembic.ini upgrade head
 $env:CRIMSON_API_TOKEN = "<strong random token>"   # required since Phase 5A.1
 .venv\Scripts\python.exe -m uvicorn crimsonweb.api.app:app --app-dir src --host 127.0.0.1 --port 8000 --no-proxy-headers
@@ -44,7 +65,8 @@ $env:CRIMSON_API_TOKEN = "<strong random token>"   # required since Phase 5A.1
 The API refuses to start without `CRIMSON_API_TOKEN` (tokenless loopback use needs
 `CRIMSON_API_DEV_ALLOW_NO_TOKEN=1`), rejects `Host` headers outside
 `CRIMSON_API_ALLOWED_HOSTS`, and backs up an outdated SQLite database before
-migrating it. See [Phase 5A.1](docs/PHASE5A1.md).
+migrating it through application startup. Manual Alembic commands bypass that
+automatic backup. See [Phase 5A.1](docs/PHASE5A1.md).
 
 CrimsonWeb is an authorized lab and assessment scanner. It does not call nmap,
 masscan, nmap-service-probes, or external scanner binaries.

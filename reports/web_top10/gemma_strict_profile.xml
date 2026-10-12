@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="4" time="0.905" timestamp="2026-10-12T12:09:06.351660+03:00" hostname="aizen"><testcase classname="tests.test_web_top10_ollama" name="test_local_model_binds_injection_test_to_known_query_parameter[sql_error_probe]" file="tests\test_web_top10_ollama.py" line="16" time="0.004"><failure message="ValueError: Invalid thinking configuration">tool = 'sql_error_probe'
+
+    @pytest.mark.ollama
+    @pytest.mark.skipif(os.getenv("CRIMSON_TEST_OLLAMA") != "1", reason="Enable explicit local Ollama integration")
+    @pytest.mark.parametrize("tool", ["sql_error_probe", "xss_reflection_probe"])
+    def test_local_model_binds_injection_test_to_known_query_parameter(tool):
+&gt;       settings = AISettings.from_env()
+                   ^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_web_top10_ollama.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = &lt;class 'crimsonweb.api.ai.provider.AISettings'&gt;
+
+    @classmethod
+    def from_env(cls) -&gt; "AISettings":
+        profile = os.getenv("CRIMSON_AI_PROFILE", "")
+        defaults = cls.for_web_profile(profile) if profile else cls()
+        default_thinking = "default" if defaults.thinking is None else str(defaults.thinking).lower()
+        thinking = os.getenv("CRIMSON_OLLAMA_THINK", default_thinking).lower()
+        if thinking not in {"default", "true", "false"}:
+&gt;           raise ValueError("Invalid thinking configuration")
+E           ValueError: Invalid thinking configuration
+
+src\crimsonweb\api\ai\provider.py:77: ValueError</failure></testcase><testcase classname="tests.test_web_top10_ollama" name="test_local_model_binds_injection_test_to_known_query_parameter[xss_reflection_probe]" file="tests\test_web_top10_ollama.py" line="16" time="0.002"><failure message="ValueError: Invalid thinking configuration">tool = 'xss_reflection_probe'
+
+    @pytest.mark.ollama
+    @pytest.mark.skipif(os.getenv("CRIMSON_TEST_OLLAMA") != "1", reason="Enable explicit local Ollama integration")
+    @pytest.mark.parametrize("tool", ["sql_error_probe", "xss_reflection_probe"])
+    def test_local_model_binds_injection_test_to_known_query_parameter(tool):
+&gt;       settings = AISettings.from_env()
+                   ^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_web_top10_ollama.py:21:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = &lt;class 'crimsonweb.api.ai.provider.AISettings'&gt;
+
+    @classmethod
+    def from_env(cls) -&gt; "AISettings":
+        profile = os.getenv("CRIMSON_AI_PROFILE", "")
+        defaults = cls.for_web_profile(profile) if profile else cls()
+        default_thinking = "default" if defaults.thinking is None else str(defaults.thinking).lower()
+        thinking = os.getenv("CRIMSON_OLLAMA_THINK", default_thinking).lower()
+        if thinking not in {"default", "true", "false"}:
+&gt;           raise ValueError("Invalid thinking configuration")
+E           ValueError: Invalid thinking configuration
+
+src\crimsonweb\api\ai\provider.py:77: ValueError</failure></testcase><testcase classname="tests.test_web_top10_ollama" name="test_real_model_drives_three_approved_rounds_against_synthetic_transport" file="tests\test_web_top10_ollama.py" line="39" time="0.002"><failure message="ValueError: Invalid thinking configuration">record_property = &lt;function record_property.&lt;locals&gt;.append_property at 0x0000024E218ED080&gt;
+
+    @pytest.mark.ollama
+    @pytest.mark.skipif(os.getenv("CRIMSON_TEST_OLLAMA") != "1", reason="Enable explicit local Ollama integration")
+    def test_real_model_drives_three_approved_rounds_against_synthetic_transport(record_property):
+        """Real model decisions, mock target responses; fallback is never a model pass."""
+&gt;       settings = AISettings.from_env()
+                   ^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_web_top10_ollama.py:44:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = &lt;class 'crimsonweb.api.ai.provider.AISettings'&gt;
+
+    @classmethod
+    def from_env(cls) -&gt; "AISettings":
+        profile = os.getenv("CRIMSON_AI_PROFILE", "")
+        defaults = cls.for_web_profile(profile) if profile else cls()
+        default_thinking = "default" if defaults.thinking is None else str(defaults.thinking).lower()
+        thinking = os.getenv("CRIMSON_OLLAMA_THINK", default_thinking).lower()
+        if thinking not in {"default", "true", "false"}:
+&gt;           raise ValueError("Invalid thinking configuration")
+E           ValueError: Invalid thinking configuration
+
+src\crimsonweb\api\ai\provider.py:77: ValueError</failure></testcase><testcase classname="tests.test_phase4c_ollama_integration" name="test_real_local_ollama_verification_plan" file="tests\test_phase4c_ollama_integration.py" line="12" time="0.002"><failure message="ValueError: Invalid thinking configuration">@pytest.mark.ollama
+    @pytest.mark.skipif(os.getenv("CRIMSON_TEST_OLLAMA") != "1",
+                        reason="Set CRIMSON_TEST_OLLAMA=1 for local Ollama integration")
+    def test_real_local_ollama_verification_plan():
+&gt;       settings = AISettings.from_env()
+                   ^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_phase4c_ollama_integration.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = &lt;class 'crimsonweb.api.ai.provider.AISettings'&gt;
+
+    @classmethod
+    def from_env(cls) -&gt; "AISettings":
+        profile = os.getenv("CRIMSON_AI_PROFILE", "")
+        defaults = cls.for_web_profile(profile) if profile else cls()
+        default_thinking = "default" if defaults.thinking is None else str(defaults.thinking).lower()
+        thinking = os.getenv("CRIMSON_OLLAMA_THINK", default_thinking).lower()
+        if thinking not in {"default", "true", "false"}:
+&gt;           raise ValueError("Invalid thinking configuration")
+E           ValueError: Invalid thinking configuration
+
+src\crimsonweb\api\ai\provider.py:77: ValueError</failure></testcase></testsuite></testsuites>

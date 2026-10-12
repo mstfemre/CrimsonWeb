@@ -378,9 +378,11 @@ def test_repeated_downgrade_refusals_leave_head_schema_and_jobs_intact():
             with pytest.raises(RuntimeError, match="Stop privacy workers"):
                 migrate(repo, "downgrade", "0004_phase4b")
             with repo.engine.connect() as connection:
+                # A refused privacy downgrade rolls back entirely, so the whole head
+                # schema (now including Phase 4C) stays at head, intact.
                 assert (
                     connection.scalar(text("SELECT version_num FROM alembic_version"))
-                    == "0005_phase5a"
+                    == "0006_phase4c"
                 )
                 assert (
                     compare_metadata(

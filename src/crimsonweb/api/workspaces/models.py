@@ -8,6 +8,15 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from crimsonweb.privacy import SECRET_FIELDS
+
+
+def query_name(value: str) -> str:
+    if (not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.-]{0,63}", value)
+        or re.sub(r"[-_]", "", value).lower() in SECRET_FIELDS):
+        raise ValueError("Invalid or sensitive query parameter name")
+    return value
+
 ProgramType = Literal["owned", "authorized_pentest", "bug_bounty", "lab"]
 Category = Literal["web_observation", "crawl", "xss", "sqli", "auth", "waf", "tls"]
 Method = Literal["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
@@ -95,6 +104,12 @@ class TargetScope(Contract):
     allowed_categories: list[Category] = Field(default_factory=list, max_length=7)
     forbidden_categories: list[Category] = Field(default_factory=list, max_length=7)
     allow_private_networks: bool = Field(default=False, strict=True)
+    allowed_query_parameters: list[str] = Field(default_factory=list, max_length=16)
+
+    @field_validator("allowed_query_parameters")
+    @classmethod
+    def query_names(cls, values):
+        return sorted({query_name(value) for value in values})
 
     @field_validator("allowed_domains")
     @classmethod
@@ -185,6 +200,16 @@ class AuthorizationRequest(Contract):
     url: str = Field(min_length=1, max_length=2048, repr=False)
     method: Method = "GET"
     category: Category = "web_observation"
+    query_parameters: dict[str, str] = Field(default_factory=dict, max_length=8, repr=False)
+
+    @field_validator("query_parameters")
+    @classmethod
+    def bounded_query(cls, values):
+        for name, value in values.items():
+            query_name(name)
+            if len(value) > 256 or any(ord(c) < 32 or ord(c) > 126 for c in value):
+                raise ValueError("Invalid query parameter value")
+        return values
 
 
 class Decision(Contract):

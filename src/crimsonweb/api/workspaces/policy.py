@@ -119,6 +119,8 @@ def evaluate(
     except (ScopeError, ValueError):
         return deny("invalid_url")
     scope = policy.target_scope
+    if set(request.query_parameters) - set(scope.allowed_query_parameters):
+        return deny("query_parameter_denied")
     if request.method not in scope.allowed_methods:
         return deny("method_denied")
     if scope.allow_private_networks and workspace.program_type not in {"owned", "lab"}:

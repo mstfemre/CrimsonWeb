@@ -25,6 +25,8 @@ from .privacy.routes import add_privacy_routes
 from .privacy.service import PrivacyService
 from .routes import add_query_routes
 from .scope import Scope, ScopeError
+from .verification.routes import add_verification_routes
+from .verification.service import VerificationService
 from .workspaces.routes import add_workspace_routes
 from .workspaces.service import WorkspaceService
 from .workspaces.store import Conflict, NotFound
@@ -38,6 +40,7 @@ def create_app(
     ai_settings: AISettings | None = None,
     discovery_transport=None,
     privacy_transport=None,
+    verification_transport=None,
 ) -> FastAPI:
     if not scan_logger.handlers:
         import logging
@@ -55,6 +58,7 @@ def create_app(
     ai_service: AIService | None = None
     discovery_manager: DiscoveryJobManager | None = None
     privacy_service: PrivacyService | None = None
+    verification_service: VerificationService | None = None
     submission_lock = asyncio.Lock()
     token = os.getenv("CRIMSON_API_TOKEN", "").strip()
     # Tokenless operation is a local development mode and must be requested explicitly.
@@ -66,6 +70,7 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         nonlocal repo, ai_service, discovery_manager, privacy_service
+        nonlocal verification_service
         if not token and not allow_no_token:
             raise RuntimeError(
                 "CRIMSON_API_TOKEN is required; set CRIMSON_API_DEV_ALLOW_NO_TOKEN=1 "
@@ -88,33 +93,46 @@ def create_app(
             app.state.privacy_service = privacy_service
             ai_service = AIService(repo, ai_provider, ai_settings)
             app.state.ai_service = ai_service
+            verification_service = VerificationService(
+                repo,
+                app.state.workspace_service,
+                verification_transport,
+                provider=ai_service.provider if ai_service.settings.enabled else None,
+                provider_gate=ai_service.gate,
+                max_input_bytes=ai_service.settings.max_input_bytes,
+            )
+            app.state.verification_service = verification_service
             yield
         finally:
             try:
-                if privacy_service:
-                    await privacy_service.shutdown()
+                if verification_service:
+                    await verification_service.shutdown()
             finally:
                 try:
-                    if discovery_manager:
-                        await discovery_manager.shutdown()
+                    if privacy_service:
+                        await privacy_service.shutdown()
                 finally:
                     try:
-                        if ai_service:
-                            await ai_service.shutdown()
-                        pending = list(tasks.values())
-                        for task in pending:
-                            task.cancel()
-                        await asyncio.gather(*pending, return_exceptions=True)
-                        for report in list(active.values()):
-                            if report.status in {"queued", "running"}:
-                                report.status, report.stop_reason = (
-                                    "stopped",
-                                    "server_shutdown",
-                                )
-                                report.finished_at = datetime.now(UTC)
-                                await asyncio.to_thread(repo.save, report)
+                        if discovery_manager:
+                            await discovery_manager.shutdown()
                     finally:
-                        repo.close()
+                        try:
+                            if ai_service:
+                                await ai_service.shutdown()
+                            pending = list(tasks.values())
+                            for task in pending:
+                                task.cancel()
+                            await asyncio.gather(*pending, return_exceptions=True)
+                            for report in list(active.values()):
+                                if report.status in {"queued", "running"}:
+                                    report.status, report.stop_reason = (
+                                        "stopped",
+                                        "server_shutdown",
+                                    )
+                                    report.finished_at = datetime.now(UTC)
+                                    await asyncio.to_thread(repo.save, report)
+                        finally:
+                            repo.close()
 
     async def authorize(
         request: Request,
@@ -280,6 +298,7 @@ def create_app(
         )
 
     add_privacy_routes(app, lambda: app.state.privacy_service)
+    add_verification_routes(app, lambda: app.state.verification_service)
     return app
 
 

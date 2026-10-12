@@ -11,8 +11,16 @@ SECRET_FIELDS = {
     "password", "passwd", "secret", "token", "accesstoken", "refreshtoken",
     "apikey", "authorization", "proxyauthorization", "cookie", "setcookie",
     "setcookielist", "torcontrolpassword",
+    "xapikey", "clientsecret", "idtoken", "sessiontoken", "sessionid",
+    "headervalue", "privatekey", "credential", "credentials",
 }
 URL_PATTERN = re.compile(r"(?:https?|socks4a?|socks5h?)://[^\s<>\"']+", re.IGNORECASE)
+BEARER_PATTERN = re.compile(r"\bBearer\s+[^\s,;]+", re.IGNORECASE)
+SECRET_ASSIGNMENT = re.compile(
+    r"(\b(?:password|passwd|secret|token|api[_-]?key|x-api-key|client[_-]?secret|"
+    r"id[_-]?token|access[_-]?token|refresh[_-]?token|authorization|cookie|set-cookie)"
+    r"\s*[:=]\s*)(?:\"[^\"\r\n]*\"|'[^'\r\n]*'|[^\s,;]+)", re.IGNORECASE,
+)
 
 
 def redact_url(value: str) -> str:
@@ -36,5 +44,7 @@ def sanitize(value: Any) -> Any:
     if isinstance(value, (list, tuple)):
         return [sanitize(item) for item in value]
     if isinstance(value, str):
-        return URL_PATTERN.sub(lambda match: redact_url(match.group()), value)
+        clean = URL_PATTERN.sub(lambda match: redact_url(match.group()), value)
+        clean = BEARER_PATTERN.sub("Bearer " + REDACTED, clean)
+        return SECRET_ASSIGNMENT.sub(lambda match: match.group(1) + REDACTED, clean)
     return value

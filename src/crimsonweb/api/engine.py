@@ -1,4 +1,5 @@
 import asyncio
+import ipaddress
 import json
 import logging
 import socket
@@ -18,6 +19,25 @@ from .waf import http_event
 from .web_analysis import analyze_web
 
 logger = logging.getLogger("crimsonweb.api")
+# Only these request header names may carry a Phase 4C test-identity credential.
+# Enforced here as defence in depth; the verification layer validates values too.
+AUTH_HEADER_ALLOWLIST = frozenset({"authorization", "cookie", "x-api-key"})
+
+
+def checked_auth_header(name, value):
+    """Validate credentials without including supplied names or values in errors."""
+    if not isinstance(name, str) or name.lower() not in AUTH_HEADER_ALLOWLIST:
+        raise ScopeError("auth_header_not_allowed")
+    if (
+        not isinstance(value, str)
+        or not value.strip()
+        or len(value) > 4096
+        or any(ord(c) < 32 or ord(c) > 126 for c in value)
+    ):
+        raise ScopeError("invalid_header_value")
+    return name, value
+
+
 SAFE_HEADERS = {
     "content-security-policy",
     "x-content-type-options",
@@ -40,8 +60,35 @@ async def pinned_response(
     method="GET",
     user_agent="CrimsonWeb/Phase1",
     observation_only=False,
+    auth_header=None,
+    allow_insecure_lab_auth=False,
+    query_parameters=None,
 ):
-    """Transport primitive: callers must authorize and resolve before entering."""
+    """Transport primitive: callers must authorize and resolve before entering.
+
+    ``auth_header`` is an optional ``(name, value)`` test-identity credential. Its
+    name must be in AUTH_HEADER_ALLOWLIST (structural headers can never be set),
+    and its value is never logged. The value is placed only in the outgoing
+    request headers.
+    """
+    headers = {
+        "Host": url.netloc.decode("ascii"),
+        "User-Agent": user_agent,
+        **(
+            {"Accept-Encoding": "identity"}
+            if observation_only
+            else {"Origin": CORS_TEST_ORIGIN}
+        ),
+    }
+    if auth_header is not None:
+        name, value = checked_auth_header(*auth_header)
+        lab_http = (
+            url.scheme == "http" and allow_insecure_lab_auth and bool(addresses)
+            and all(ipaddress.ip_address(ip).is_private for ip in addresses)
+        )
+        if url.scheme != "https" and not lab_http:
+            raise ScopeError("credential_https_required")
+        headers[name] = value
     pinned = url.copy_with(host=addresses[0])
     async with (
         httpx.AsyncClient(
@@ -50,15 +97,8 @@ async def pinned_response(
         client.stream(
             method,
             pinned,
-            headers={
-                "Host": url.netloc.decode("ascii"),
-                "User-Agent": user_agent,
-                **(
-                    {"Accept-Encoding": "identity"}
-                    if observation_only
-                    else {"Origin": CORS_TEST_ORIGIN}
-                ),
-            },
+            headers=headers,
+            params=query_parameters or None,
             extensions={"sni_hostname": url.host},
         ) as response,
     ):
